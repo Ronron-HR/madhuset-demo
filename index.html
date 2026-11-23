@@ -3,12 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Madhuset Løgten: selskabslokale til 25-60 gæster | Demo</title>
-<meta name="description" content="Et helt hus til jeres fest. Selskabslokale i Løgten til 25-60 gæster, 3-retters buffet og huset i 7 timer. Se prisen for jeres fest.">
+<title>Madhuset Løgten: hold fest i salen eller bestil mad | Demo</title>
+<meta name="description" content="Hele huset til jeres fest: selskabslokale i Løgten til 25-60 gæster, 3-retters buffet og huset i 7 timer. Eller bestil mad fra Mondrups. Se prisen og jeres bord i 3D.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="data:,">
 <link rel="preload" href="fonts/young-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="img/sal.webp" as="image" fetchpriority="high">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/site.css">
 <script type="application/ld+json">
@@ -25,6 +24,7 @@
       <a href="pris.html">Pris</a>
       <a href="menu.html">Menu</a>
       <a href="lokalet.html">Lokalet</a>
+      <a href="bestil.html">Bestil mad</a>
       <a href="kontakt.html">Spørg om dato</a>
     </nav>
   </div>
@@ -33,7 +33,10 @@
 <main id="indhold">
   <section class="entrance">
     <figure class="entrance-foto">
-      <img src="img/sal.webp" width="1920" height="1281" fetchpriority="high" alt="Dækkede langborde med hvide duge, træstole, vinglas og gule blomster i Madhuset Løgten, set ind i salen">
+      <picture>
+        <source media="(max-width: 899px)" srcset="img/sal-m-720.webp 720w, img/sal-m-1080.webp 1080w" sizes="100vw">
+        <img src="img/sal-1440.webp" srcset="img/sal-960.webp 960w, img/sal-1440.webp 1440w, img/sal-1920.webp 1920w" sizes="100vw" width="1920" height="1281" fetchpriority="high" alt="Dækkede langborde med hvide duge, træstole, vinglas og gule blomster i Madhuset Løgten, set ind i salen">
+      </picture>
       <figcaption>Foto: RAISFOTO</figcaption>
       <button type="button" class="btn btn-sek entrance-3d" data-rundt>Se jeres bord i 3D</button>
     </figure>
@@ -43,7 +46,7 @@
       <p>3-retters buffet og huset i 7 timer.</p>
       <div class="actions">
         <a class="btn" href="pris.html">Beregn jeres pris</a>
-        <a class="link" href="tel:+4593408541">Ring 93 40 85 41</a>
+        <a class="btn btn-sek" href="bestil.html">Bestil mad</a>
       </div>
     </div>
   </section>
@@ -58,14 +61,61 @@
     </div>
   </section>
 
+  <section class="veje">
+    <div class="wrap">
+      <article class="vej">
+        <button type="button" class="vej-foto" data-rundt aria-label="Se jeres bord i 3D. Foto af en dækket tallerken og glas">
+          <picture>
+            <source media="(max-width: 899px)" srcset="img/bord-640.webp" width="640" height="959">
+            <img src="img/bord-1000.webp" width="1000" height="1499" loading="lazy" alt="Dækket bord med vinglas, tallerken og en ret i en lys skål på hvid dug">
+          </picture>
+          <span class="vej-merke">Se jeres bord i 3D</span>
+        </button>
+        <div class="vej-tekst">
+          <h2>Hold fest i Madhuset</h2>
+          <p>25–60 gæster, 3-retters buffet, kokken i køkkenet og huset i 7 timer. I må selv medbringe drikkevarer og pynt. Buffet er med i selskabspakken.</p>
+          <ul class="rows">
+            <li>499 kr. pr. kuvert ved 35–60 gæster, 599 kr. ved 25–34, plus obligatorisk rengøring</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" href="pris.html">Beregn jeres pris</a>
+            <a class="link" href="menu.html">Læs om maden</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="vej">
+        <a class="vej-foto" href="bestil.html" aria-label="Bestil mad. Foto af et dækket træbord med snacks">
+          <picture>
+            <source media="(max-width: 899px)" srcset="img/ig-nytaar-bord-720.webp" width="720" height="480">
+            <img src="img/ig-nytaar-bord-1280.webp" width="1280" height="854" loading="lazy" alt="Dækket træbord set ovenfra med skåle med snacks og guldfarvet serpentine">
+          </picture>
+          <span class="vej-merke">Bestil mad</span>
+        </a>
+        <div class="vej-tekst">
+          <h2>Bestil mad</h2>
+          <p>Bestil nytårsmenu, juleand og fællesspisning direkte hos Mondrups, eller få et tilbud på mad til jeres selskab. Maden hentes på Bytorvet i Skødstrup.</p>
+          <ul class="rows">
+            <li>Nytårsmenu 500 kr. pr. kuvert, juleand 500 kr., fællesspisning 199 kr.</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" href="bestil.html">Bestil mad</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
   <section class="front-story">
     <div class="wrap">
       <figure class="story-photo">
-        <img src="img/bord.webp" width="1568" height="2350" loading="lazy" alt="Et dækket bord med glas, tallerkener og en anrettet ret i en lys skål">
+        <picture>
+          <img src="img/sal-vindue.webp" width="800" height="534" loading="lazy" alt="Lange borde med træstole og dækkede pladser foran store vinduer">
+        </picture>
       </figure>
       <div class="story-copy">
         <h2>Plads til at samle dem, I holder af</h2>
-        <p class="lead">Fødselsdag, konfirmation eller bare en god anledning til at samle familien. I vælger bordopstilling og kan selv tage drikkevarer og pynt med.</p>
+        <p class="lead">Fødselsdag, konfirmation eller bare en god anledning. I vælger bordopstilling og kan selv tage drikkevarer og pynt med.</p>
         <ul class="rows">
           <li><strong>Før festen</strong> · Adgang til lokalet og et intromøde om bordene og opdækningen.</li>
           <li><strong>Under festen</strong> · Kokken, en afrydder, musikanlæg og projektor.</li>
@@ -95,22 +145,11 @@
     </div>
   </section>
 
-  <section class="front-menu">
-    <div class="wrap">
-      <div>
-        <h2>Tre retter fra køkkenet</h2>
-        <p>Buffet, surdejsbrød med dyppelser og lokal kaffe på kande. Ring og hør, hvilke retter menuen består af.</p>
-        <a class="link" href="menu.html">Se selskabsmenuen</a>
-      </div>
-      <img src="img/buffet.jpg" width="1200" height="800" loading="lazy" alt="Et udvalg af retter fra Mondrups med salater, kød og tilbehør">
-    </div>
-  </section>
-
   <section class="front-price">
     <div class="wrap">
       <div class="front-price-copy">
         <h2>Hvad koster jeres fest?</h2>
-        <p>Priseksemplerne inkluderer buffet, lokale i syv timer og obligatorisk rengøring. Drikkevarer fra huset og øvrige tilvalg kommer oveni.</p>
+        <p>Priseksemplerne inkluderer buffet, lokale i syv timer og obligatorisk rengøring. Drikkevarer fra huset og øvrige tilvalg kommer oveni. Mad fra Mondrups' webshop er ikke med.</p>
         <div class="actions">
           <a class="btn" href="pris.html">Beregn jeres pris</a>
           <a class="link" href="kontakt.html">Spørg om en dato</a>
@@ -146,7 +185,7 @@
         <p class="small" id="rundt-status" role="status"></p>
       </div>
       <figure class="rundt-foto">
-        <img src="img/sal.webp" width="1920" height="1281" loading="lazy" alt="Dækkede langborde med træstole, vinglas og gule blomster i Madhuset Løgten">
+        <img src="img/sal-960.webp" width="960" height="641" loading="lazy" alt="Dækkede langborde med træstole, vinglas og gule blomster i Madhuset Løgten">
         <figcaption class="small">Foto af lokalet. Foto: RAISFOTO.</figcaption>
       </figure>
     </div>
@@ -156,8 +195,8 @@
         <button type="button" data-antal="55" aria-pressed="false">55 gæster</button>
       </div>
       <div class="rundt-valg" id="rundt-vinkler" role="group" aria-label="Synsvinkel">
-        <button type="button" data-vinkel="langs" aria-pressed="true">Se langs bordene</button>
-        <button type="button" data-vinkel="oppefra" aria-pressed="false">Se ovenfra</button>
+        <button type="button" data-vinkel="bord" aria-pressed="true">Ved bordet</button>
+        <button type="button" data-vinkel="oppefra" aria-pressed="false">Ovenfra</button>
       </div>
       <div class="rundt-kontrol" id="rundt-kontrol">
         <button type="button" data-drej="-1">Drej til venstre</button>
@@ -176,7 +215,7 @@
     <div>
       <p><strong>Madhuset Løgten</strong>, Bytorvet 13, 8541 Skødstrup</p>
       <p>Ring alle ugens dage 09.00-21.00: <a href="tel:+4593408541">93 40 85 41</a> · <a href="mailto:info@mondrups.com">info@mondrups.com</a></p>
-      <p>Demo lavet af OviaSpecs. Ikke godkendt af Madhuset Løgten eller Mondrups. Priser og oplysninger fra mondrups.com/madhuset, hentet 23.11.2026. Fotos: RAISFOTO, fra mondrups.com/madhuset, brugt i demoen og fjernes efter ønske.</p>
+      <p>Demo lavet af OviaSpecs. Ikke godkendt af Madhuset Løgten eller Mondrups. Priser og oplysninger fra mondrups.com, hentet 23.11.2026. Fotos: RAISFOTO (fra mondrups.com/madhuset) og Madhusets Instagram, brugt i demoen og fjernes efter ønske.</p>
     </div>
   </div>
 </footer>

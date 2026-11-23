@@ -181,7 +181,8 @@ footer p { max-width: none; margin-bottom: var(--s-8); }
 .skip:focus { transform: none; }
 .demo { padding-block: var(--s-4); }
 .top .wrap { row-gap: var(--s-4); }
-.nav { gap: 0 clamp(0.7rem, 3.6vw, 1.5rem); }
+.nav { gap: 0 clamp(0.5rem, 2.4vw, 1.25rem); }
+.nav a { font-size: 0.9375rem; }
 .nav a { display: inline-flex; align-items: center; padding-block: var(--s-4); }
 .nav a:last-child { font-weight: 600; }
 .nav a[aria-current="page"] { text-decoration-color: var(--c-sun); text-decoration-thickness: 3px; }
@@ -267,13 +268,14 @@ dialog::backdrop { background: var(--c-ink); }
   .page-head { padding-block: var(--s-64); }
   .demo { padding-inline: var(--s-40); }
   .top .wrap { align-items: center; }
-  .top .brand { grid-column: 1 / 6; }
-  .top .nav { grid-column: 7 / -1; justify-content: flex-end; }
+  .top .brand { grid-column: 1 / 5; }
+  .top .nav { grid-column: 5 / -1; justify-content: flex-end; gap: var(--s-16) var(--s-24); }
   .nav { gap: var(--s-24); }
-  .entrance { height: clamp(540px, calc(100svh - 110px), 860px); }
+  .nav a { font-size: var(--t-16); }
+  .entrance { height: clamp(520px, calc(100svh - 140px), 860px); }
   .entrance-foto, .entrance-foto img { height: 100%; }
   .entrance-foto img { aspect-ratio: auto; object-position: 50% 68%; }
-  .entrance-panel { position: absolute; top: var(--s-40); left: var(--s-40); width: min(26rem, 40%); }
+  .entrance-panel { position: absolute; top: var(--s-40); left: var(--s-40); width: min(27rem, 47%); }
   .entrance-panel h1 { font-size: var(--t-44); }
   .entrance-3d { right: var(--s-40); bottom: var(--s-40); }
   .entrance-foto figcaption { left: auto; right: 0; bottom: 0; }
@@ -319,4 +321,49 @@ dialog::backdrop { background: var(--c-ink); }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+
+/* ---------- To veje ind: Hold fest i Madhuset og Bestil mad ---------- */
+.entrance-panel .actions { flex-direction: row; gap: var(--s-8) var(--s-16); }
+.veje .wrap { row-gap: var(--s-40); }
+.vej { display: grid; gap: var(--s-16); align-content: start; }
+.vej-foto { position: relative; display: block; padding: 0; border: 0; background: none; cursor: pointer; font: inherit; color: inherit; text-align: left; text-decoration: none; }
+.vej-foto img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.vej-merke { position: absolute; left: 0; bottom: 0; background: var(--c-paper); padding: var(--s-8) var(--s-16); font-weight: 600; }
+.vej-merke::before { content: ""; display: inline-block; width: 10px; height: 10px; background: var(--c-sun); margin-right: var(--s-8); }
+.vej-foto:hover .vej-merke { text-decoration: underline; text-underline-offset: 4px; }
+.vej-tekst h2 { margin-bottom: var(--s-8); font-size: var(--t-28); }
+.vej-tekst .rows { margin-bottom: 0; }
+.veje { padding-block: var(--s-40); }
+
+/* ---------- Bestil mad ---------- */
+.bestil-hero { padding: 0; border-top: 0; }
+.bestil-hero .photo img { aspect-ratio: 16 / 9; object-fit: cover; }
+.bestil-direkte h2, .bestil-tilbud h2 { margin-bottom: var(--s-16); }
+.produkter { display: grid; gap: var(--s-40); }
+.produkt { display: grid; gap: var(--s-16); align-content: start; border-top: 1px solid var(--c-ink); padding-top: var(--s-16); }
+.produkt img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.produkt-tekst h3 { font-size: var(--t-28); margin-bottom: var(--s-8); }
+.produkt-pris { font-weight: 600; font-size: var(--t-20); margin-bottom: var(--s-8); }
+.produkt .rows { margin-bottom: var(--s-16); }
+.produkt .status { font-weight: 600; margin-bottom: var(--s-16); }
+.bestil-valg { display: grid; gap: var(--s-8); margin-bottom: var(--s-16); max-width: 22rem; }
+.bestil-valg label { font-weight: 600; }
+.bestil-valg input { font: inherit; color: inherit; background: var(--c-paper); border: 0; border-bottom: 2px solid var(--c-ink); border-radius: 0; padding: var(--s-8) 0; min-height: 48px; width: 100%; font-variant-numeric: tabular-nums; }
+.bestil-valg .overslag { margin: 0; font-size: var(--t-14); }
+.produkt .btn { margin-right: var(--s-16); margin-bottom: var(--s-8); }
+.tilbud-tekst p { max-width: 60ch; }
+.tilbud-form { max-width: 34rem; margin-top: var(--s-24); }
+.field select, .field textarea { font: inherit; color: inherit; background: var(--c-paper); border: 1px solid var(--c-ink); border-radius: 0; padding: var(--s-8); min-height: 48px; width: 100%; }
+
+@media (min-width: 900px) {
+  .entrance-panel .actions { flex-wrap: wrap; }
+  .veje .wrap > .vej { grid-column: span 6; }
+  .veje .vej { grid-template-columns: 1fr; }
+  .bestil-hero .photo img { aspect-ratio: 21 / 8; }
+  .produkter { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-40) var(--s-24); }
+  .produkt-uden-foto { grid-column: 1 / -1; }
+  .produkt-uden-foto .produkt-tekst { max-width: 46rem; }
+  .tilbud-tekst { grid-column: 1 / 7; }
+  .tilbud-form { grid-column: 7 / -1; margin-top: 0; max-width: none; }
 }

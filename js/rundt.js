@@ -14,7 +14,7 @@ const vinkler = document.getElementById("rundt-vinkler");
 const reduceret = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 let antal = 30;
-let vinkel = "langs";
+let vinkel = "bord";
 let visning = null;
 let indlaeser = false;
 let mangler3d = false;
@@ -73,7 +73,7 @@ async function aabn3d() {
     if (dlg.open) {
       visning = mod.start(scene, { reduceret: reduceret.matches });
       visning.saet(antal);
-      if (vinkel !== "langs") visning.vinkel(vinkel);
+      if (vinkel !== "bord") visning.vinkel(vinkel);
     }
     status.textContent = "";
   } catch {
@@ -88,7 +88,7 @@ async function aabn3d() {
 for (const knap of document.querySelectorAll("[data-rundt]")) {
   knap.addEventListener("click", () => {
     dlg.showModal();
-    vinkel = "langs";
+    vinkel = "bord";
     vaelgFane("plan");
     if (mangler3d) visPlantegninger();
     vaelgAntal(Number(knap.dataset.antal) || antal);
@@ -106,6 +106,8 @@ dlg.addEventListener("close", () => {
   visning = null;
   status.textContent = "";
 });
+// Bruges kun af tests
+dlg.tilstand = () => (visning ? visning.tilstand() : null);
 
 const TRIN = Math.PI / 12;
 for (const b of dlg.querySelectorAll("[data-drej]")) b.addEventListener("click", () => visning && visning.drej(Number(b.dataset.drej) * TRIN));

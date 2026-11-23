@@ -21,6 +21,7 @@
       <a href="pris.html">Pris</a>
       <a href="menu.html">Menu</a>
       <a href="lokalet.html" aria-current="page">Lokalet</a>
+      <a href="bestil.html">Bestil mad</a>
       <a href="kontakt.html">Spørg om dato</a>
     </nav>
   </div>
@@ -40,7 +41,10 @@
 
   <section class="band">
     <figure class="photo">
-      <img src="img/sal.webp" width="1920" height="1281" alt="Langborde med hvide duge, træstole, vinglas og gule blomster i Madhuset Løgten">
+      <picture>
+        <source media="(max-width: 899px)" srcset="img/sal-m-720.webp 720w, img/sal-m-1080.webp 1080w" sizes="100vw">
+        <img src="img/sal-1440.webp" srcset="img/sal-960.webp 960w, img/sal-1440.webp 1440w, img/sal-1920.webp 1920w" sizes="100vw" width="1920" height="1281" alt="Dækkede langborde med hvide duge, træstole, vinglas og gule blomster i Madhuset Løgten">
+      </picture>
       <figcaption class="small">Dækkede langborde. Foto: RAISFOTO.</figcaption>
     </figure>
   </section>
@@ -131,7 +135,7 @@
         <p class="small" id="rundt-status" role="status"></p>
       </div>
       <figure class="rundt-foto">
-        <img src="img/sal.webp" width="1920" height="1281" loading="lazy" alt="Dækkede langborde med træstole, vinglas og gule blomster i Madhuset Løgten">
+        <img src="img/sal-960.webp" width="960" height="641" loading="lazy" alt="Dækkede langborde med træstole, vinglas og gule blomster i Madhuset Løgten">
         <figcaption class="small">Foto af lokalet. Foto: RAISFOTO.</figcaption>
       </figure>
     </div>
@@ -141,8 +145,8 @@
         <button type="button" data-antal="55" aria-pressed="false">55 gæster</button>
       </div>
       <div class="rundt-valg" id="rundt-vinkler" role="group" aria-label="Synsvinkel">
-        <button type="button" data-vinkel="langs" aria-pressed="true">Se langs bordene</button>
-        <button type="button" data-vinkel="oppefra" aria-pressed="false">Se ovenfra</button>
+        <button type="button" data-vinkel="bord" aria-pressed="true">Ved bordet</button>
+        <button type="button" data-vinkel="oppefra" aria-pressed="false">Ovenfra</button>
       </div>
       <div class="rundt-kontrol" id="rundt-kontrol">
         <button type="button" data-drej="-1">Drej til venstre</button>

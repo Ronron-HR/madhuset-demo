@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bestil mad fra Mondrups: nytårsmenu, juleand og fællesspisning | Demo</title>
+<meta name="description" content="Bestil nytårsmenu, juleand eller fællesspisning direkte hos Mondrups, eller få et tilbud på mad til jeres selskab. Priser, frister og afhentning fra mondrups.com.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<link rel="preload" href="fonts/young-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<a class="skip" href="#indhold">Gå til indhold</a>
+<div class="demo"><p>Demo af OviaSpecs · ikke Madhusets egen side</p></div>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">Madhuset Løgten</a>
+    <nav class="nav" aria-label="Hovedmenu">
+      <a href="pris.html">Pris</a>
+      <a href="menu.html">Menu</a>
+      <a href="lokalet.html">Lokalet</a>
+      <a href="bestil.html" aria-current="page">Bestil mad</a>
+      <a href="kontakt.html">Spørg om dato</a>
+    </nav>
+  </div>
+</header>
+
+<main id="indhold">
+  <section class="page-head">
+    <div class="wrap">
+      <h1>Bestil mad</h1>
+      <p class="lead">Bestil direkte hos Mondrups, eller bed om et tilbud på mad til jeres selskab. Maden hentes hos Mondrups på Bytorvet i Skødstrup.</p>
+    </div>
+  </section>
+
+  <section class="bestil-hero">
+    <figure class="photo">
+      <picture>
+        <source media="(max-width: 899px)" srcset="img/ig-nytaar-bord-720.webp" width="720" height="480">
+        <img src="img/ig-nytaar-bord-1280.webp" width="1280" height="854" alt="Lækkert dækket træbord set ovenfra med tre skåle med snacks og guldfarvet serpentine" loading="eager">
+      </picture>
+      <figcaption class="small">Foto fra <a href="https://www.instagram.com/madhusetloegten/p/C1XH8D6o8w9/">Madhusets Instagram</a>, opslag fra 27. december 2023 (billede 1 af 2).</figcaption>
+    </figure>
+  </section>
+
+  <section class="bestil-direkte">
+    <div class="wrap">
+      <h2>Bestil direkte hos Mondrups</h2>
+      <p class="lead" style="grid-column: 1 / -1;">Disse varer sælges i Mondrups' webshop. Her kan I se pris, frist og afhentning og regne et overslag. Selve bestillingen og betalingen sker på mondrups.com.</p>
+
+      <div class="produkter" style="grid-column: 1 / -1;">
+
+        <article class="produkt" data-pris="500" data-min="1" data-frist="2026-12-20" id="p-juleand">
+          <picture>
+            <source media="(max-width: 899px)" srcset="img/juleand-640.webp" width="640" height="800">
+            <img src="img/juleand-900.webp" width="900" height="1125" loading="lazy" alt="Helstegt, parteret juleand med rødkål, kartofler og sovs på et skærebræt">
+          </picture>
+          <div class="produkt-tekst">
+            <h3>Juleand fra Mondrups</h3>
+            <p class="produkt-pris">500 kr. <span class="small">pr. and, inkl. moms</span></p>
+            <ul class="rows">
+              <li>Helstegt and parteret i 8 stykker (4 lår og 4 bryst), sovs kogt på skroget og hjemmesyltet rødkål</li>
+              <li>Til 4–6 kuverter</li>
+              <li><strong>Afhentning:</strong> 23. december kl. 14–16 i Madhuset, Bytorvet 13, 8541 Skødstrup</li>
+              <li><strong>Sidste bestillingsdag:</strong> 20. december</li>
+            </ul>
+            <p class="status small" data-status></p>
+            <div class="bestil-valg">
+              <label for="q-juleand">Antal ænder</label>
+              <input type="number" id="q-juleand" min="1" max="20" value="1" inputmode="numeric" data-antal>
+              <p class="overslag num" data-overslag></p>
+            </div>
+            <a class="btn" href="https://mondrups.com/product/juleand-2026/" rel="noopener">Bestil juleand hos Mondrups</a>
+          </div>
+        </article>
+
+        <article class="produkt" data-pris="500" data-min="2" data-frist="2026-12-30" id="p-nytaar">
+          <picture>
+            <source media="(max-width: 899px)" srcset="img/nytaar-640.webp" width="640" height="427">
+            <img src="img/nytaar-1000.webp" width="1000" height="667" loading="lazy" alt="Oksemørbrad med urtecrust og kartoffelterrin på en lys tallerken på et egetræsbord">
+          </picture>
+          <div class="produkt-tekst">
+            <h3>Nytårsmenu 2026</h3>
+            <p class="produkt-pris">500 kr. <span class="small">pr. kuvert, inkl. moms. Mindst 2 kuverter</span></p>
+            <ul class="rows">
+              <li>Fire retter fra Magnus Mondrup, tilberedt i køkkenet og klar til jeres eget bord: bålbagt glaskål, intens hummersuppe, oksemørbrad med urtecrust og champagnekage</li>
+              <li><strong>Afhentning:</strong> 31. december kl. 10–12 hos Mondrups, Bytorvet 13, 8541 Skødstrup</li>
+              <li><strong>Sidste bestilling:</strong> 30. december</li>
+              <li>Kun den faste nytårsmenu. Der laves ikke vegetarmenu eller specialkost i år. Allergener står på mærkaten på hver bakke.</li>
+            </ul>
+            <p class="status small" data-status></p>
+            <div class="bestil-valg">
+              <label for="q-nytaar">Antal kuverter (mindst 2)</label>
+              <input type="number" id="q-nytaar" min="2" max="40" value="2" inputmode="numeric" data-antal>
+              <p class="overslag num" data-overslag></p>
+            </div>
+            <a class="btn" href="https://mondrups.com/product/nytaarsmenu-2026/" rel="noopener">Bestil nytårsmenu hos Mondrups</a>
+          </div>
+        </article>
+
+        <article class="produkt produkt-uden-foto" data-pris="199" data-pris2="99" data-min="0" data-dato="2026-12-02" id="p-faelles">
+          <div class="produkt-tekst">
+            <h3>Fællesspisning onsdag 2. december</h3>
+            <p class="produkt-pris">199 kr. <span class="small">voksen · 99 kr. barn under 10 år, inkl. moms</span></p>
+            <ul class="rows">
+              <li>Onsdag 2. december 2026 kl. 17:15</li>
+              <li>Nakkesteg med rødkål, kartofler, brun sovs og grønkålssalat, og lidt sødt med kaffe. Drikkevarer som buffet (øl, vin, sodavand og vand) er med i prisen.</li>
+              <li>Børn på 10 år og derover skal købe voksenbillet.</li>
+              <li>Sted og frist: ikke oplyst på produktsiderne. Spørg Mondrups.</li>
+            </ul>
+            <p class="status small" data-status></p>
+            <div class="bestil-valg">
+              <label for="q-voksen">Voksne</label>
+              <input type="number" id="q-voksen" min="0" max="20" value="1" inputmode="numeric" data-antal>
+              <label for="q-barn">Børn under 10</label>
+              <input type="number" id="q-barn" min="0" max="20" value="0" inputmode="numeric" data-antal2>
+              <p class="overslag num" data-overslag></p>
+            </div>
+            <a class="btn" href="https://mondrups.com/product/faellesspisning-voksen/" rel="noopener">Køb voksenbillet hos Mondrups</a>
+            <a class="link" href="https://mondrups.com/product/faellesspisning-barn/" rel="noopener">Køb børnebillet hos Mondrups</a>
+          </div>
+        </article>
+
+      </div>
+      <p class="small" style="grid-column: 1 / -1;">Priser, frister og afhentning er hentet fra mondrups.com den 23.11.2026 og kan ændre sig. Mængden følger ikke med over i Mondrups' webshop. Du vælger antal dér. Der bestilles og betales intet fra denne side.</p>
+    </div>
+  </section>
+
+  <section class="bestil-tilbud">
+    <div class="wrap">
+      <h2>Mad til jeres selskab: få et tilbud</h2>
+      <div class="tilbud-tekst">
+        <p>Til fest, reception, bryllup, konfirmation og fødselsdag bestiller I ikke direkte. Mondrups har ikke offentliggjort priser på selskabsmad og beder om en forespørgsel. På fest og reception skriver de, at de fleste løsninger er til selskaber fra 30 kuverter og op, undtagen smørrebrød.</p>
+        <p><strong>Maden er ikke en del af Madhusets pris for lokale og buffet.</strong> Den pris finder I under <a href="pris.html">Pris</a>.</p>
+      </div>
+      <div class="calc tilbud-form">
+        <div class="field">
+          <label for="t-anledning">Anledning</label>
+          <select id="t-anledning">
+            <option>Fest</option>
+            <option>Reception</option>
+            <option>Bryllup</option>
+            <option>Konfirmation</option>
+            <option>Fødselsdag</option>
+            <option>Andet</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="t-antal">Antal kuverter</label>
+          <input type="number" id="t-antal" min="1" max="500" value="30" inputmode="numeric">
+        </div>
+        <div class="field">
+          <label for="t-dato">Ønsket dato</label>
+          <input type="date" id="t-dato">
+        </div>
+        <div class="field">
+          <label for="t-oensker">Ønsker til maden (valgfri)</label>
+          <textarea id="t-oensker" rows="3"></textarea>
+        </div>
+        <div>
+          <a class="btn" id="t-mail" href="mailto:info@mondrups.com">Få et tilbud på maden</a>
+          <p class="small" style="margin-top: var(--s-16);">Det er en forespørgsel, ikke en bestilling. Knappen åbner en udfyldt mail i dit eget mailprogram til info@mondrups.com. Der sendes intet fra denne side. Du kan også bruge <a href="https://mondrups.com/tilbud/" rel="noopener">Mondrups' tilbudsformular</a> eller ringe på <a href="tel:+4593408541">93 40 85 41</a>.</p>
+          <details class="mail-preview" id="t-boks">
+            <summary>Se eller kopiér forespørgslen</summary>
+            <label for="t-tekst">Jeres forespørgsel</label>
+            <textarea id="t-tekst" rows="7" readonly></textarea>
+            <button type="button" class="knaplink" id="t-kopi">Kopiér teksten</button>
+            <p class="small" id="t-status" role="status"></p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <p><strong>Madhuset Løgten</strong>, Bytorvet 13, 8541 Skødstrup</p>
+      <p>Ring: <a href="tel:+4593408541">93 40 85 41</a> · <a href="mailto:info@mondrups.com">info@mondrups.com</a></p>
+      <p>Demo lavet af OviaSpecs. Ikke godkendt af Madhuset Løgten eller Mondrups. Priser, frister og afhentning fra mondrups.com (shop og produktsider), hentet 23.11.2026. Fotos: Madhusets Instagram og Mondrups' produktsider, brugt i demoen og fjernes efter ønske.</p>
+    </div>
+  </div>
+</footer>
+<script type="module" src="js/bestil.js"></script>
+</body>
+</html>
