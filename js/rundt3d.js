@@ -5,7 +5,8 @@ import { grundlag, ROOM } from "./plan.js";
 
 // To synsvinkler. "bord" står i gæstehøjde i gangen og ser langs langbordet. "oppefra" viser hele opstillingen.
 const VINKLER = {
-  bord: { az: 0.5, pol: 1.25, radius: 7.4, mål: [0, 0.7, 0.3] },
+  // lidt over bordhøjde, skråt ned langs et langbord. Kameraet står i gangen mellem to borde.
+  bord: { az: 0.29, pol: 1.43, radius: 6.0, mål: [-0.4, 0.72, 0.1] },
   oppefra: { az: 0, pol: 0.1, mål: [0, 0.3, 0.3] },
 };
 // Halv udstrækning af den største opstilling (55 gæster). Begge opstillinger bruger samme kamera, så forskellen kan ses.
@@ -34,10 +35,10 @@ export function start(container, { reduceret = false } = {}) {
   };
   const scene = new THREE.Scene();
   scene.background = c.papir;
-  // Blødt lys fra siden og diskrete skygger
-  scene.add(new THREE.HemisphereLight(0xffffff, 0xd9ceb8, 1.45));
-  const lys = new THREE.DirectionalLight(0xfff0d4, 1.35);
-  lys.position.set(-9, 8, 5);
+  // Varmt, blødt lys fra vinduessiden (venstre) og diskrete skygger. Den hvide dug er selvlysende nok til at forblive lys.
+  scene.add(new THREE.HemisphereLight(0xfff6e6, 0xd8c6a6, 1.6));
+  const lys = new THREE.DirectionalLight(0xffdfb0, 1.35);
+  lys.position.set(-10, 6.5, 3);
   lys.castShadow = true;
   lys.shadow.mapSize.set(2048, 2048);
   lys.shadow.radius = 4;
@@ -48,9 +49,11 @@ export function start(container, { reduceret = false } = {}) {
   const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
   const mat = (farveVaerdi, ekstra = {}) => new THREE.MeshStandardMaterial({ color: farveVaerdi, roughness: 0.9, metalness: 0, ...ekstra });
   const m = {
-    gulv: mat(c.gulv), dug: mat(c.dug), dugSkygge: mat(c.dugSkygge), trae: mat(c.trae), trae2: mat(c.trae2),
-    sol: mat(c.sol), tallerken: mat(c.dug, { roughness: 0.4 }), glas: mat(c.glas, { transparent: true, opacity: 0.55, roughness: 0.1 }),
-    lys: mat(c.lys, { emissive: c.lys, emissiveIntensity: 0.35 }), stilk: mat(new THREE.Color("#5E8F45")),
+    gulv: mat(c.gulv, { emissive: c.gulv, emissiveIntensity: 0.14 }), dug: mat(c.dug, { emissive: c.dug, emissiveIntensity: 0.3 }), dugSkygge: mat(c.dugSkygge, { emissive: c.dugSkygge, emissiveIntensity: 0.24 }),
+    trae: mat(c.trae), trae2: mat(c.trae2),
+    sol: mat(c.sol, { emissive: c.sol, emissiveIntensity: 0.15 }), tallerken: mat(c.dug, { roughness: 0.35, emissive: c.dug, emissiveIntensity: 0.1 }),
+    glas: mat(c.glas, { transparent: true, opacity: 0.5, roughness: 0.08 }),
+    lys: mat(c.lys, { emissive: c.lys, emissiveIntensity: 0.55 }), stilk: mat(new THREE.Color("#5E8F45")),
   };
 
   const gulv = new THREE.Mesh(new THREE.PlaneGeometry(ROOM.w, ROOM.d), m.gulv);
@@ -68,15 +71,16 @@ export function start(container, { reduceret = false } = {}) {
   const G = {
     skirt: geo(new THREE.BoxGeometry(1, 0.7, 4.2)),
     top: geo(new THREE.BoxGeometry(1.14, 0.04, 4.34)),
-    vase: geo(new THREE.CylinderGeometry(0.05, 0.07, 0.22, 10)),
-    blomst: geo(new THREE.IcosahedronGeometry(0.12, 0)),
-    stilk: geo(new THREE.CylinderGeometry(0.012, 0.012, 0.2, 5)),
-    lysGlas: geo(new THREE.CylinderGeometry(0.06, 0.06, 0.09, 12)),
+    vase: geo(new THREE.CylinderGeometry(0.035, 0.05, 0.14, 10)),
+    blomst: geo(new THREE.IcosahedronGeometry(0.075, 1)),
+    lysGlas: geo(new THREE.CylinderGeometry(0.045, 0.045, 0.07, 12)),
     saede: geo(new THREE.BoxGeometry(0.44, 0.05, 0.44)),
     ryg: geo(new THREE.BoxGeometry(0.05, 0.5, 0.44)),
     ben: geo(new THREE.BoxGeometry(0.05, 0.43, 0.05)),
     tallerken: geo(new THREE.CylinderGeometry(0.15, 0.15, 0.02, 16)),
-    glas: geo(new THREE.CylinderGeometry(0.035, 0.03, 0.13, 10)),
+    glasBowl: geo(new THREE.CylinderGeometry(0.048, 0.028, 0.1, 12)),
+    glasStilk: geo(new THREE.CylinderGeometry(0.007, 0.007, 0.085, 6)),
+    glasFod: geo(new THREE.CylinderGeometry(0.03, 0.03, 0.005, 12)),
   };
   const sk = (mesh, kast = true) => { mesh.castShadow = kast; mesh.receiveShadow = true; return mesh; };
 
@@ -87,13 +91,13 @@ export function start(container, { reduceret = false } = {}) {
     g.position.set(t.x, 0, t.z);
     const skirt = sk(new THREE.Mesh(G.skirt, m.dugSkygge)); skirt.position.y = 0.35; g.add(skirt);
     const top = sk(new THREE.Mesh(G.top, m.dug)); top.position.y = 0.72; g.add(top);
-    const vase = sk(new THREE.Mesh(G.vase, m.glas)); vase.position.y = 0.85; g.add(vase);
-    const stilk = new THREE.Mesh(G.stilk, m.stilk); stilk.position.y = 0.95; g.add(stilk);
-    for (const [dx, dy, dz] of [[0, 1.08, 0], [0.07, 1.02, 0.04], [-0.06, 1.0, -0.05]]) {
-      const b = sk(new THREE.Mesh(G.blomst, m.sol)); b.scale.setScalar(dy > 1.05 ? 1 : 0.7); b.position.set(dx, dy, dz); g.add(b);
+    // Lav pynt langs midten: tre små vaser med gule blomster og to lave lys. Så kan man stadig se ned langs bordet.
+    for (const dz of [-1.45, 0, 1.45]) {
+      const vase = sk(new THREE.Mesh(G.vase, m.glas)); vase.position.set(0, 0.81, dz); g.add(vase);
+      const b = sk(new THREE.Mesh(G.blomst, m.sol)); b.position.set(0, 0.94, dz); g.add(b);
     }
-    for (const dz of [-1.2, 1.2]) {
-      const l = new THREE.Mesh(G.lysGlas, m.lys); l.position.set(0, 0.79, dz); g.add(l);
+    for (const dz of [-0.72, 0.72]) {
+      const l = new THREE.Mesh(G.lysGlas, m.lys); l.position.set(0, 0.775, dz); g.add(l);
     }
     scene.add(g);
     return { g, t, x: t.x, ekstra: t.ekstra, p: 0, mål: 0, hold: 0, glid: (t.x < 0 ? -1 : 1) * 3.2 };
@@ -110,7 +114,7 @@ export function start(container, { reduceret = false } = {}) {
     scene.add(im);
     return im;
   };
-  const I = { saede: inst(G.saede, m.trae, N), ryg: inst(G.ryg, m.trae, N), ben: inst(G.ben, m.trae, N * 4), tallerken: inst(G.tallerken, m.tallerken, N), glas: inst(G.glas, m.glas, N) };
+  const I = { saede: inst(G.saede, m.trae, N), ryg: inst(G.ryg, m.trae, N), ben: inst(G.ben, m.trae, N * 4), tallerken: inst(G.tallerken, m.tallerken, N), glasBowl: inst(G.glasBowl, m.glas, N), glasStilk: inst(G.glasStilk, m.glas, N), glasFod: inst(G.glasFod, m.glas, N) };
   const dummy = new THREE.Object3D();
   function sæt(im, i, x, y, z, s) {
     dummy.position.set(x, y * s, z);
@@ -129,7 +133,11 @@ export function start(container, { reduceret = false } = {}) {
     let b = i * 4;
     for (const dx of [-0.17, 0.17]) for (const dz of [-0.17, 0.17]) sæt(I.ben, b++, x + dx * e, 0.22, s.z + dz * e, e);
     sæt(I.tallerken, i, s.x - s.dir * 0.58 + gx, 0.755, s.z, e);
-    sæt(I.glas, i, s.x - s.dir * 0.48 + gx, 0.83, s.z - 0.2, e);
+    // vinglas ved siden af tallerkenen: fod, stilk og bæger
+    const gxPos = s.x - s.dir * 0.4 + gx;
+    sæt(I.glasFod, i, gxPos, 0.745, s.z + 0.2, e);
+    sæt(I.glasStilk, i, gxPos, 0.79, s.z + 0.2, e);
+    sæt(I.glasBowl, i, gxPos, 0.885, s.z + 0.2, e);
   }
   function tegnBord(b) {
     const e = blød(b.p);
