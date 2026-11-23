@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pris på selskab i Madhuset Løgten: regn selv efter | Demo</title>
+<meta name="description" content="Regn prisen ud for jeres selskab i Madhuset Løgten: gæstetal, ekstra tid, dug og servering. Priser fra mondrups.com, hentet 23.11.2026.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<div class="demo"><p>Demo lavet af OviaSpecs. Ikke Madhusets egen side. Oplysninger og priser fra mondrups.com/madhuset, hentet 23.11.2026.</p></div>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">Madhuset Løgten</a>
+    <nav class="nav" aria-label="Hovedmenu">
+      <a href="pris.html" aria-current="page">Pris</a>
+      <a href="menu.html">Menu</a>
+      <a href="lokalet.html">Lokalet</a>
+      <a href="kontakt.html">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="page-head">
+    <div class="wrap">
+      <h1>Hvad koster jeres selskab?</h1>
+      <p class="lead">Skriv, hvor mange I er. Resten regner vi ud efter de priser, huset selv oplyser.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap pris-wrap">
+      <form class="calc" id="calc" onsubmit="return false">
+        <div class="field">
+          <label for="guests">Antal gæster (25-60)</label>
+          <input type="range" id="guests-range" min="25" max="60" value="40" aria-label="Antal gæster, skyder">
+          <input type="number" id="guests" min="25" max="60" value="40" inputmode="numeric">
+        </div>
+        <div class="field">
+          <label for="extra">Ekstra timer ud over de 7 (0-5)</label>
+          <input type="number" id="extra" min="0" max="5" value="0" inputmode="numeric">
+        </div>
+        <div class="field">
+          <span class="check"><input type="checkbox" id="linen"><label for="linen">Hvid dug og servietter</label></span>
+        </div>
+        <fieldset class="fieldset field">
+          <legend>Servering (275 kr. pr. person pr. time)</legend>
+          <label for="waiters">Antal serveringsfolk (0-5)</label>
+          <input type="number" id="waiters" min="0" max="5" value="0" inputmode="numeric">
+          <label for="whours">Timer pr. person (0-12)</label>
+          <input type="number" id="whours" min="0" max="12" value="0" inputmode="numeric">
+          <p class="small">Hvor meget servering I har brug for, kan I afklare ved at ringe.</p>
+        </fieldset>
+      </form>
+
+      <div class="totalbar" aria-live="polite">
+        <p class="small">Samlet pris ekskl. drikkevarer</p>
+        <p class="total" id="total">&nbsp;</p>
+      </div>
+      <div class="breakdown">
+        <dl class="ledger" id="lines"></dl>
+        <p class="small" style="margin-top:var(--s-16)">Drikkevarer betales efter forbrug. Priserne er hentet fra mondrups.com/madhuset den 23.11.2026 og er ikke et tilbud.</p>
+        <div class="actions">
+          <a class="btn" id="mail" href="mailto:info@mondrups.com">Skriv og få oplæg</a>
+          <a class="link" href="tel:+4593408541">Ring 93 40 85 41</a>
+        </div>
+      </div>
+      <noscript><p>Uden JavaScript kan beregneren ikke vises. Priserne står på <a href="index.html">forsiden</a>.</p></noscript>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <p><strong>Madhuset Løgten</strong>, Bytorvet 13, 8541 Skødstrup</p>
+      <p>Ring alle ugens dage 09.00-21.00: <a href="tel:+4593408541">93 40 85 41</a> · <a href="mailto:info@mondrups.com">info@mondrups.com</a></p>
+      <p>Demo lavet af OviaSpecs. Ikke godkendt af Madhuset Løgten eller Mondrups.</p>
+    </div>
+  </div>
+</footer>
+<script src="js/pris.js"></script>
+</body>
+</html>

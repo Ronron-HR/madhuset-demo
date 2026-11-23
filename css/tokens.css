@@ -1,0 +1,25 @@
+:root {
+  --c-ink: #1F1B16;
+  --c-paper: #F4EFE6;
+  --c-surface: #E9E1D1;
+  --c-accent: #8F3A1F;
+  --c-line: #CFC5B2;
+
+  --f-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --f-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --t-14: 0.875rem;
+  --t-16: 1rem;
+  --t-20: 1.25rem;
+  --t-28: 1.75rem;
+  --t-44: 2.75rem;
+  --t-72: 4.5rem;
+
+  --s-4: 0.25rem;
+  --s-8: 0.5rem;
+  --s-16: 1rem;
+  --s-24: 1.5rem;
+  --s-40: 2.5rem;
+  --s-64: 4rem;
+  --s-104: 6.5rem;
+}
