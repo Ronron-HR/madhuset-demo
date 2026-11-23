@@ -372,3 +372,7 @@ dialog::backdrop { background: var(--c-ink); }
 #total-sub { min-height: 3em; }
 #lines { min-height: 11.5rem; }
 .rundt-maerke { min-width: 9.5rem; }
+
+/* Knapper i sidehoveder stables på mobil, så rækken ikke ombrydes, når skrifttypen er hentet */
+.page-head .actions { flex-direction: column; align-items: flex-start; gap: var(--s-8); }
+@media (min-width: 900px) { .page-head .actions { flex-direction: row; align-items: center; gap: var(--s-16) var(--s-24); } }
