@@ -17,3 +17,26 @@ export function iDag() {
   const p = (n) => String(n).padStart(2, "0");
   return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
 }
+
+export function tilslutMailvisning() {
+  const visning = document.getElementById("forespoergsel");
+  const felt = document.getElementById("mail-text");
+  const status = document.getElementById("mail-status");
+  visning.hidden = false;
+
+  document.getElementById("mail-copy").addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(felt.value);
+      status.textContent = "Forespørgslen er kopieret.";
+    } catch {
+      felt.focus();
+      felt.select();
+      status.textContent = "Teksten er markeret. Kopiér den med din enheds kopifunktion.";
+    }
+  });
+
+  return (linjer) => {
+    felt.value = linjer.join("\n");
+    status.textContent = "";
+  };
+}

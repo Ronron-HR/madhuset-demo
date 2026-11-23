@@ -30,10 +30,12 @@ export function start(container) {
   const gulv = new THREE.Mesh(new THREE.PlaneGeometry(ROOM.w, ROOM.d), m.surface);
   gulv.rotation.x = -Math.PI / 2;
   scene.add(gulv);
+  const rumkant = new THREE.BoxGeometry(ROOM.w, 0.01, ROOM.d);
   const kant = new THREE.LineSegments(
-    new THREE.EdgesGeometry(new THREE.BoxGeometry(ROOM.w, 0.01, ROOM.d)),
+    new THREE.EdgesGeometry(rumkant),
     new THREE.LineBasicMaterial({ color: c.ink })
   );
+  rumkant.dispose();
   scene.add(kant);
 
   let gruppe = null;
@@ -130,7 +132,11 @@ export function start(container) {
     stop() {
       dod = true;
       ro.disconnect();
+      scene.traverse((objekt) => objekt.geometry?.dispose());
+      for (const materiale of Object.values(m)) materiale.dispose();
+      kant.material.dispose();
       renderer.dispose();
+      renderer.forceContextLoss();
       dom.remove();
     },
   };

@@ -12,7 +12,8 @@
 <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
-<div class="demo"><p>Demo af OviaSpecs. Ikke Madhusets egen side.</p></div>
+<a class="skip" href="#indhold">Gå til indhold</a>
+<div class="demo"><p>Demovisning af OviaSpecs. Ikke Madhusets egen side.</p></div>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="index.html">Madhuset Løgten</a>
@@ -20,19 +21,19 @@
       <a href="pris.html">Pris</a>
       <a href="menu.html">Menu</a>
       <a href="lokalet.html" aria-current="page">Lokalet</a>
-      <a href="kontakt.html">Kontakt</a>
+      <a href="kontakt.html">Spørg om dato</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="indhold">
   <section class="page-head">
     <div class="wrap">
       <h1>Plads til 25–60 gæster.</h1>
-      <p class="lead">Bordene stiller I op, som I vil have dem. Lokalet er åbent for jer fra før selskabet begynder.</p>
+      <p class="lead">Aftal bordopstillingen med huset, og få adgang til lokalet inden festen.</p>
       <div class="actions">
         <a class="btn" href="pris.html">Se pris for jeres fest</a>
-        <button type="button" class="knaplink" data-rundt>Se jer omkring</button>
+        <button type="button" class="knaplink" data-rundt>Prøv bordplanen i 3D</button>
       </div>
     </div>
   </section>
@@ -74,7 +75,7 @@
           <figcaption class="small">55 gæster. Illustration af en mulig bordopstilling. <a href="pris.html?gaester=55">Beregn pris for 55 gæster</a></figcaption>
         </figure>
       </div>
-      <p class="small" style="grid-column: 1 / -1; margin-top: var(--s-16);">Tegningerne er illustrationer. Mål, vinduer og dørplacering er ikke fra stedet, og det er ikke et godkendt 360°-foto. Den rigtige opstilling aftaler I med huset.</p>
+      <p class="small" style="grid-column: 1 / -1; margin-top: var(--s-16);">Illustrationer af mulige bordopstillinger. Den endelige opstilling aftaler I med huset.</p>
     </div>
   </section>
 
@@ -96,7 +97,7 @@
 
   <section class="split">
     <div class="wrap">
-      <h2>Se jeres dato</h2>
+      <h2>Spørg om jeres dato</h2>
       <div class="body">
         <p class="lead">Ring og hør, om datoen er ledig.</p>
         <div class="actions">
@@ -111,21 +112,24 @@
 <dialog id="rundt" aria-labelledby="rundt-titel">
   <div class="rundt-ramme">
     <div class="rundt-top">
-      <h2 id="rundt-titel">Se jer omkring</h2>
+      <h2 id="rundt-titel">Prøv bordplanen i 3D</h2>
       <button type="button" class="knaplink" data-luk>Luk</button>
     </div>
-    <p class="small">Illustration af en mulig bordopstilling. Mål, vinduer og indretning er ikke fra stedet. Der findes endnu intet godkendt 360°-foto af lokalet.</p>
+    <p class="small">3D-illustration af mulige bordopstillinger. Den faktiske opstilling aftaler I med Madhuset.</p>
+    <div class="rundt-visning">
     <div class="rundt-valg" role="group" aria-label="Antal gæster">
       <button type="button" data-antal="30" aria-pressed="true">30 gæster</button>
       <button type="button" data-antal="55" aria-pressed="false">55 gæster</button>
+    </div>
+    <button type="button" class="knaplink" id="rundt-skift">Se tegning ovenfra</button>
     </div>
     <div class="rundt-scene" id="rundt-scene" tabindex="0" role="application" aria-label="Tredimensionel illustration. Træk eller brug piletasterne for at dreje. Home nulstiller."></div>
     <div class="rundt-planer" id="rundt-planer" hidden></div>
     <p class="small" id="rundt-status" role="status"></p>
     <div class="rundt-bund">
       <div class="rundt-kontrol" id="rundt-kontrol">
-        <button type="button" data-drej="-1">Drej mod venstre</button>
-        <button type="button" data-drej="1">Drej mod højre</button>
+        <button type="button" data-drej="-1">Drej til venstre</button>
+        <button type="button" data-drej="1">Drej til højre</button>
         <button type="button" data-nulstil>Nulstil udsyn</button>
       </div>
       <a class="btn" id="rundt-pris" href="pris.html?gaester=30">Beregn pris for 30 gæster</a>

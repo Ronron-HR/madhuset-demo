@@ -1,9 +1,11 @@
-import { mailLink, datoTekst, iDag } from "./mail.js";
+import { mailLink, datoTekst, iDag, tilslutMailvisning } from "./mail.js";
 import { klem, kr, grundpris, MIN_GAESTER, MAX_GAESTER } from "./beregn.js";
 
 const dato = document.getElementById("k-dato");
 const gaester = document.getElementById("k-gaester");
 const knap = document.getElementById("k-mail");
+
+const visMail = tilslutMailvisning();
 
 function update() {
   const g = klem(gaester.value, MIN_GAESTER, MAX_GAESTER);
@@ -17,6 +19,7 @@ function update() {
     "",
     "Venlig hilsen",
   ];
+  visMail(linjer);
   knap.href = mailLink(`Forespørgsel: selskab for ${g} gæster`, linjer);
 }
 

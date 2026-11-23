@@ -1,9 +1,10 @@
 import { beregn, grundpris, klem, kr, tal, PRIS, MIN_GAESTER, MAX_GAESTER } from "./beregn.js";
-import { mailLink, datoTekst, iDag } from "./mail.js";
+import { mailLink, datoTekst, iDag, tilslutMailvisning } from "./mail.js";
 
 const $ = (id) => document.getElementById(id);
 const range = $("guests-range");
 const guestsInput = $("guests");
+const genveje = document.querySelectorAll("[data-gaester]");
 
 function line(label, value, note) {
   const row = document.createElement("div");
@@ -64,8 +65,13 @@ function laes() {
   });
 }
 
+const visMail = tilslutMailvisning();
+
 function update() {
   const r = laes();
+  for (const genvej of genveje) {
+    genvej.setAttribute("aria-pressed", String(Number(genvej.getAttribute("data-gaester")) === r.gaester));
+  }
   $("total").textContent = kr(r.total);
   $("total-sub").textContent = r.tilvalgTotal
     ? `Grundpris ${kr(r.grundTotal)} + tilvalg ${kr(r.tilvalgTotal)} · ${kr(r.perGaest)} pr. gæst`
@@ -96,10 +102,20 @@ function update() {
     "",
     "Venlig hilsen",
   ];
+  visMail(linjer);
   $("mail").href = mailLink(`Forespørgsel: selskab for ${r.gaester} gæster`, linjer);
 }
 
-range.addEventListener("input", () => { guestsInput.value = range.value; update(); });
+function visGaestetal(antal) {
+  guestsInput.value = antal;
+  range.value = antal;
+  update();
+}
+
+range.addEventListener("input", () => visGaestetal(range.value));
+for (const genvej of genveje) {
+  genvej.addEventListener("click", () => visGaestetal(genvej.getAttribute("data-gaester")));
+}
 guestsInput.addEventListener("input", update);
 guestsInput.addEventListener("change", () => {
   guestsInput.value = klem(guestsInput.value, MIN_GAESTER, MAX_GAESTER);

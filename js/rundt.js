@@ -10,7 +10,10 @@ const kontrol = document.getElementById("rundt-kontrol");
 
 let antal = 30;
 let visning = null;
-let reserveBrugt = false;
+const skift = document.getElementById("rundt-skift");
+let tegning = false;
+let indlaeser = false;
+let mangler3d = false;
 
 function vaelg(n) {
   antal = n;
@@ -21,45 +24,63 @@ function vaelg(n) {
   for (const f of planer.children) f.classList.toggle("valgt", Number(f.dataset.antal) === n);
 }
 
-// Uden 3D ser gæsten stadig begge opstillinger, vælger antal og går videre til prisen
-function reserve() {
-  if (reserveBrugt) return;
-  reserveBrugt = true;
-  for (const n of ANTAL) {
-    const fig = document.createElement("figure");
-    fig.dataset.antal = n;
-    const cap = document.createElement("figcaption");
-    cap.textContent = `${n} gæster`;
-    fig.append(planSvg(n), cap);
-    planer.append(fig);
+function visTegning() {
+  if (!planer.children.length) {
+    for (const n of ANTAL) {
+      const fig = document.createElement("figure");
+      fig.dataset.antal = n;
+      const cap = document.createElement("figcaption");
+      cap.textContent = `${n} gæster`;
+      fig.append(planSvg(n), cap);
+      planer.append(fig);
+    }
   }
-  planer.hidden = false;
-  scene.hidden = true;
-  kontrol.hidden = true;
-  status.textContent = "3D kan ikke vises her. Her er begge opstillinger set ovenfra.";
   vaelg(antal);
 }
 
+function visValgtTilstand() {
+  const visPlan = tegning || mangler3d;
+  planer.hidden = !visPlan;
+  scene.hidden = visPlan;
+  kontrol.hidden = visPlan;
+  skift.hidden = mangler3d;
+  skift.textContent = visPlan ? "Vis i 3D" : "Se tegning ovenfra";
+  if (visPlan) visTegning();
+}
+
 async function aabn3d() {
-  if (visning || reserveBrugt) return;
-  status.textContent = "Indlæser 3D-visning ...";
+  if (visning || indlaeser || tegning || mangler3d) return;
+  indlaeser = true;
+  status.textContent = "Indlæser 3D-visning …";
   try {
     const mod = await import("./rundt3d.js");
-    if (!dlg.open) { status.textContent = ""; return; }
-    visning = mod.start(scene);
-    visning.saet(antal);
+    if (dlg.open && !tegning) {
+      visning = mod.start(scene);
+      visning.saet(antal);
+    }
     status.textContent = "";
   } catch {
-    reserve();
+    mangler3d = true;
+    visValgtTilstand();
+    status.textContent = "3D kan ikke vises på denne enhed. Her er begge opstillinger set ovenfra.";
+  } finally {
+    indlaeser = false;
   }
 }
+
+skift.addEventListener("click", () => {
+  tegning = !tegning;
+  visValgtTilstand();
+  if (!tegning) aabn3d();
+});
 
 for (const knap of document.querySelectorAll("[data-rundt]")) {
   knap.addEventListener("click", () => {
     dlg.showModal();
     vaelg(Number(knap.dataset.antal) || antal);
+    visValgtTilstand();
     aabn3d();
-    scene.focus();
+    if (!scene.hidden) scene.focus();
   });
 }
 for (const b of dlg.querySelectorAll("[data-antal]")) b.addEventListener("click", () => vaelg(Number(b.dataset.antal)));
