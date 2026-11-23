@@ -59,6 +59,7 @@ Madbestilling holdes adskilt fra Madhusets pris for lokale og buffet. Siden (`be
 - Stockfoto kun til stemning og aldrig som stedets egne. Intet foto uden kilde. Genkendelige personer kræver samtykke.
 - Demoen er markeret ("Demo af OviaSpecs · ikke Madhusets egen side"), er noindex, og fotos fjernes efter ønske.
 - Alle farver og størrelser kommer fra tokens. Ingen nye farver uden at opdatere denne fil.
+- Ikon: `favicon.svg` (M på træfarvet flade med gul linje), `favicon-32.png`, `favicon.ico`, `apple-touch-icon.png` og `site.webmanifest`. Samme farver som tokens.
 
 ## 8. Gennemgang før udgivelse
 Tag skærmbilleder af forside, Lokalet, Menu og Bestil mad ved 390, 905 og 1440 px. Kontrollér, at billederne faktisk vises og ikke er klemt, at 3D → 55 gæster → pris virker, og at Bestil mad → produkt/forespørgsel virker. Test mail uden at sende.
