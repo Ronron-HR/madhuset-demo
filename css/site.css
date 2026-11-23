@@ -99,6 +99,15 @@ section + section { border-top: 1px solid var(--c-line); }
 .bleed { grid-column: 1 / -1; margin-inline: calc(var(--s-24) * -1); }
 .bleed .ph { aspect-ratio: auto; min-height: 280px; }
 
+/* Stockfoto (kun stemning) */
+.band { padding-block: 0; border-top: 0; }
+.photo { margin: 0; margin-inline: calc(var(--s-24) * -1); }
+.photo-frame { overflow: hidden; aspect-ratio: 4 / 3; background: var(--c-surface); }
+.photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; }
+.photo figcaption { padding: var(--s-8) var(--s-24); }
+.drift { animation: drift 28s ease-in-out infinite alternate; transform-origin: 50% 60%; }
+@keyframes drift { from { transform: scale(1); } to { transform: scale(1.08); } }
+
 /* Beregner */
 .calc { display: grid; gap: var(--s-24); }
 .field { display: grid; gap: var(--s-8); }
@@ -145,6 +154,9 @@ footer p { max-width: none; margin-bottom: var(--s-8); }
   .includes h2 { grid-column: 1 / 5; }
   .includes .rows { grid-column: 6 / -1; }
   .bleed { margin-inline: calc(var(--s-40) * -1); }
+  .photo { margin-inline: calc(var(--s-40) * -1); }
+  .photo-frame { aspect-ratio: 21 / 8; }
+  .photo figcaption { padding-inline: var(--s-40); }
   .split h2 { grid-column: 1 / 5; }
   .split .body { grid-column: 6 / -1; }
   .ledger-wrap { grid-column: 3 / -1; }
