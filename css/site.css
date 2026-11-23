@@ -163,24 +163,6 @@ section + section { border-top: 1px solid var(--c-line); }
 .ask { display: grid; gap: var(--s-16); margin-top: var(--s-24); }
 .ask .btn { justify-self: start; }
 
-/* 360-visning */
-[hidden] { display: none !important; }
-dialog { border: 0; padding: 0; margin: 0; width: 100%; max-width: none; height: 100dvh; max-height: none; background: var(--c-paper); color: var(--c-ink); }
-dialog::backdrop { background: var(--c-ink); }
-.rundt-ramme { display: flex; flex-direction: column; gap: var(--s-8); height: 100%; padding: var(--s-16) var(--s-24); max-width: 1200px; margin-inline: auto; }
-.rundt-top { display: flex; justify-content: space-between; align-items: center; }
-.rundt-top h2 { font-size: var(--t-28); }
-.rundt-ramme p { margin: 0; max-width: none; }
-.rundt-valg, .rundt-kontrol { display: flex; flex-wrap: wrap; gap: var(--s-8); }
-.rundt-valg button, .rundt-kontrol button { font: inherit; padding: var(--s-8) var(--s-16); min-height: 44px; background: var(--c-paper); color: var(--c-ink); border: 1px solid var(--c-ink); border-radius: 0; cursor: pointer; }
-.rundt-valg button[aria-pressed="true"] { background: var(--c-ink); color: var(--c-paper); }
-.rundt-scene { flex: 1; min-height: 240px; background: var(--c-paper); border: 1px solid var(--c-line); position: relative; }
-.rundt-scene canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
-.rundt-planer { display: grid; gap: var(--s-16); overflow: auto; flex: 1; align-content: start; }
-.rundt-planer figure { margin: 0; padding: var(--s-8); }
-.rundt-planer figure.valgt { outline: 2px solid var(--c-ink); }
-.rundt-bund { display: flex; flex-wrap: wrap; gap: var(--s-16); align-items: center; justify-content: space-between; }
-
 /* Bordplaner set ovenfra (illustration) */
 .plan { width: 100%; height: auto; }
 .plan-rum { fill: var(--c-surface); stroke: var(--c-ink); stroke-width: 0.06; }
@@ -194,23 +176,124 @@ dialog::backdrop { background: var(--c-ink); }
 footer { border-top: 1px solid var(--c-line); padding-block: var(--s-40); font-size: var(--t-14); }
 footer p { max-width: none; margin-bottom: var(--s-8); }
 
+/* ---------- Identitet fra fotoernes materialer: hvid dug, træ, glas, gule blomster ---------- */
+.skip { position: absolute; top: var(--s-8); left: var(--s-8); z-index: 10; padding: var(--s-8) var(--s-16); background: var(--c-paper); transform: translateY(-150%); }
+.skip:focus { transform: none; }
+.demo { padding-block: var(--s-4); }
+.top .wrap { row-gap: var(--s-4); }
+.nav { gap: 0 clamp(0.7rem, 3.6vw, 1.5rem); }
+.nav a { display: inline-flex; align-items: center; padding-block: var(--s-4); }
+.nav a:last-child { font-weight: 600; }
+.nav a[aria-current="page"] { text-decoration-color: var(--c-sun); text-decoration-thickness: 3px; }
+.page-head { background: var(--c-surface); padding-block: var(--s-40); }
+footer { background: var(--c-surface); }
+.btn-sek { background: var(--c-paper); color: var(--c-ink); border: 1px solid var(--c-ink); }
+
+/* Forside: døråbningen. Salen først, en kompakt flade med tekst */
+.entrance { position: relative; padding: 0; border-top: 0; }
+.entrance-foto { margin: 0; position: relative; }
+.entrance-foto img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 74%; }
+.entrance-foto figcaption { position: absolute; left: 0; bottom: 0; background: var(--c-paper); padding: var(--s-4) var(--s-8); font-size: var(--t-14); }
+.entrance-3d { position: absolute; right: var(--s-16); bottom: var(--s-16); }
+.entrance-panel { background: var(--c-paper); padding: var(--s-24); }
+.entrance-panel .where { margin: 0 0 var(--s-8); font-size: var(--t-14); font-weight: 600; }
+.entrance-panel h1 { font-size: var(--t-28); line-height: 1.08; margin-bottom: var(--s-8); }
+.entrance-panel p { margin-bottom: 0; }
+.entrance-panel .actions { margin-top: var(--s-16); }
+
+.front-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; }
+.front-facts > div { padding: var(--s-16) var(--s-8); }
+.front-facts > div + div { border-left: 1px solid var(--c-line); padding-left: var(--s-16); }
+.front-facts dt { font: 400 clamp(1.1rem, 4.4vw, 2rem)/1.2 var(--f-display); }
+.front-facts dd { margin: var(--s-4) 0 0; font-size: var(--t-14); line-height: 1.3; }
+.front-detail { padding-block: 0; background: var(--c-surface); }
+.front-story .wrap, .front-table .wrap, .front-menu .wrap, .front-price .wrap { row-gap: var(--s-24); }
+.story-photo { margin: 0; }
+.story-photo img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; object-position: 50% 59%; }
+.story-copy h2, .table-copy h2, .front-menu h2, .front-price h2 { margin-bottom: var(--s-16); }
+.story-copy .link { margin-top: var(--s-16); }
+.front-table { background: var(--c-surface); }
+.front-table .planer { gap: var(--s-16); }
+.front-table .planer figure { margin: 0; }
+.front-menu img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.front-prices { align-self: center; margin: 0; }
+.front-prices dt a { text-underline-offset: 0.25em; }
+.front-prices dd { font-weight: 600; }
+
+/* Pris og forespørgsel */
+.guest-shortcuts { display: flex; flex-wrap: wrap; gap: var(--s-8); margin-bottom: var(--s-16); }
+.guest-shortcuts button { font: inherit; color: inherit; background: var(--c-paper); border: 1px solid var(--c-ink); border-radius: 0; min-height: 44px; padding: var(--s-8) var(--s-16); cursor: pointer; }
+.guest-shortcuts button[aria-pressed="true"] { background: var(--c-ink); color: var(--c-paper); }
+.price-explainer { margin-block: var(--s-24) 0; }
+.price-explainer summary, .mail-preview summary { cursor: pointer; min-height: 44px; padding-block: var(--s-8); font-weight: 600; }
+.price-explainer .chart { margin-top: var(--s-16); }
+.mail-preview textarea { display: block; width: 100%; margin-top: var(--s-4); padding: var(--s-16); font: inherit; color: inherit; background: var(--c-paper); border: 1px solid var(--c-ink); border-radius: 0; resize: vertical; }
+.mail-preview label { font-size: var(--t-14); }
+
+/* 3D-visningen: bordplan ved siden af fotoet af lokalet */
+[hidden] { display: none !important; }
+dialog { border: 0; padding: 0; margin: 0; width: 100%; max-width: none; height: 100dvh; max-height: none; background: var(--c-paper); color: var(--c-ink); }
+dialog::backdrop { background: var(--c-ink); }
+.rundt-ramme { display: flex; flex-direction: column; gap: var(--s-8); height: 100%; padding: var(--s-16) var(--s-24); max-width: 1280px; margin-inline: auto; }
+.rundt-ramme p { margin: 0; max-width: none; }
+.rundt-top { display: flex; justify-content: space-between; align-items: center; }
+.rundt-top h2 { font-size: var(--t-20); }
+.rundt-faner, .rundt-valg, .rundt-kontrol { display: flex; flex-wrap: wrap; gap: var(--s-8); }
+.rundt-faner button, .rundt-valg button, .rundt-kontrol button { font: inherit; padding: var(--s-8) var(--s-16); min-height: 44px; background: var(--c-paper); color: var(--c-ink); border: 1px solid var(--c-ink); border-radius: 0; cursor: pointer; }
+.rundt-faner button[aria-pressed="true"], .rundt-valg button[aria-pressed="true"] { background: var(--c-ink); color: var(--c-paper); }
+.rundt-hoved { flex: 1 1 0; min-height: 0; display: grid; gap: var(--s-16); grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); }
+.rundt-model { display: flex; flex-direction: column; gap: var(--s-8); min-height: 0; }
+.rundt-scene-ramme { position: relative; flex: 1 1 0; min-height: 220px; border: 1px solid var(--c-line); background: var(--c-paper); }
+.rundt-scene { position: absolute; inset: 0; }
+.rundt-scene canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
+.rundt-maerke { position: absolute; left: 0; top: 0; z-index: 1; background: var(--c-paper); border-right: 1px solid var(--c-line); border-bottom: 1px solid var(--c-line); padding: var(--s-4) var(--s-8); font-weight: 600; font-size: var(--t-14); }
+.rundt-maerke::before { content: ""; display: inline-block; width: 10px; height: 10px; background: var(--c-sun); margin-right: var(--s-8); }
+.rundt-planer { position: absolute; inset: 0; overflow: auto; padding: var(--s-16); }
+.rundt-planer figure { margin: 0; }
+.rundt-planer figure:not(.valgt) { display: none; }
+.rundt-foto { margin: 0; min-height: 0; display: flex; flex-direction: column; gap: var(--s-8); }
+.rundt-foto img { width: 100%; flex: 1 1 0; min-height: 0; object-fit: cover; object-position: 50% 70%; }
+.rundt-ramme[data-fane="plan"] .rundt-foto { display: none; }
+.rundt-ramme[data-fane="foto"] .rundt-model { display: none; }
+.rundt-bund { display: flex; flex-wrap: wrap; gap: var(--s-16); align-items: center; justify-content: space-between; }
+.rundt-styring { display: flex; flex-direction: column; gap: var(--s-8); }
+
 @media (min-width: 900px) {
   h1 { font-size: var(--t-44); }
   h2 { font-size: var(--t-44); }
   .wrap { grid-template-columns: repeat(12, 1fr); column-gap: var(--s-24); padding-inline: var(--s-40); }
   .wrap > h2 { margin-bottom: 0; }
-  .includes .wrap { row-gap: var(--s-24); }
   section { padding-block: var(--s-104); }
+  .page-head { padding-block: var(--s-64); }
   .demo { padding-inline: var(--s-40); }
   .top .wrap { align-items: center; }
   .top .brand { grid-column: 1 / 6; }
   .top .nav { grid-column: 7 / -1; justify-content: flex-end; }
+  .nav { gap: var(--s-24); }
+  .entrance { height: clamp(540px, calc(100svh - 110px), 860px); }
+  .entrance-foto, .entrance-foto img { height: 100%; }
+  .entrance-foto img { aspect-ratio: auto; object-position: 50% 68%; }
+  .entrance-panel { position: absolute; top: var(--s-40); left: var(--s-40); width: min(26rem, 40%); }
+  .entrance-panel h1 { font-size: var(--t-44); }
+  .entrance-3d { right: var(--s-40); bottom: var(--s-40); }
+  .entrance-foto figcaption { left: auto; right: 0; bottom: 0; }
+  .front-facts > div { padding-block: var(--s-24); }
+  .front-story .story-photo { grid-column: 2 / 6; }
+  .story-photo img { aspect-ratio: 4 / 5; }
+  .front-story .story-copy { grid-column: 7 / 12; align-self: center; }
+  .front-table .table-copy { grid-column: 1 / 5; align-self: center; }
+  .front-table .planer { grid-column: 6 / -1; grid-template-columns: 1fr 1fr; }
+  .front-menu .wrap > div { grid-column: 1 / 6; align-self: center; }
+  .front-menu img { grid-column: 7 / -1; }
+  .front-price-copy { grid-column: 1 / 7; }
+  .front-prices { grid-column: 8 / -1; }
   .naer-bord { grid-column: 1 / 6; grid-row: 1 / 3; }
   .naer-sal { grid-column: 7 / -1; grid-row: 1; }
   .naer-tekst { grid-column: 7 / -1; grid-row: 2; align-self: end; }
   .photo img { aspect-ratio: 16 / 7; }
   .photo figcaption { padding-inline: var(--s-40); }
   .includes h2 { grid-column: 1 / 5; }
+  .includes .wrap { row-gap: var(--s-24); }
   .includes .rows, .includes .groups { grid-column: 6 / -1; }
   .split h2 { grid-column: 1 / 5; }
   .split .body { grid-column: 6 / -1; }
@@ -226,110 +309,14 @@ footer p { max-width: none; margin-bottom: var(--s-8); }
   .price-explainer { grid-column: 8 / -1; grid-row: 4; }
   .hours-bar span { height: 48px; }
   .planer { grid-template-columns: 1fr 1fr; }
-  .rundt-planer { grid-template-columns: 1fr 1fr; }
-  dialog { margin: auto; width: min(1200px, calc(100% - 80px)); height: min(820px, calc(100dvh - 80px)); }
+  dialog { margin: auto; width: min(1280px, calc(100% - 80px)); height: min(840px, calc(100dvh - 80px)); }
   .rundt-ramme { padding: var(--s-24) var(--s-40); }
+  .rundt-hoved { grid-template-columns: 3fr 2fr; }
+  .rundt-faner { display: none; }
+  .rundt-ramme[data-fane] .rundt-model, .rundt-ramme[data-fane] .rundt-foto { display: flex; }
+  .rundt-styring { flex-direction: row; flex-wrap: wrap; gap: var(--s-16); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
-}
-
-/* Visuel identitet og fælles navigation */
-:root {
-  --c-hero: #26382E;
-  --c-callout: #F2D883;
-  --c-on-dark: #FFFDF4;
-}
-
-.skip {
-  position: absolute;
-  top: .5rem;
-  left: .5rem;
-  z-index: 10;
-  padding: .6rem 1rem;
-  background: var(--c-paper);
-  transform: translateY(-150%);
-}
-.skip:focus { transform: none; }
-.demo { font-size: .75rem; padding-block: .25rem; }
-.top .wrap { row-gap: .25rem; }
-.nav { gap: 0 clamp(.7rem, 3.6vw, 1.5rem); }
-.nav a { display: inline-flex; align-items: center; padding: .25rem 0; }
-.nav a:last-child { font-weight: 600; }
-.brand { padding-block: .25rem; }
-.page-head { background: var(--c-surface); }
-footer { background: var(--c-surface); }
-
-.front-hero { display: grid; padding: 0; background: var(--c-hero); color: var(--c-on-dark); }
-.front-intro { padding: clamp(1.6rem, 5vw, 5rem) clamp(1.2rem, 4.5vw, 5rem); }
-.venue-line { margin: 0 0 .7rem; color: var(--c-callout); }
-.front-intro h1 { font-size: clamp(2.55rem, 7vw, 7.2rem); line-height: .98; text-wrap: initial; }
-.front-intro .lead { margin: 1.1rem 0 0; max-width: 30ch; }
-.front-hero .actions { gap: .4rem 1.2rem; margin-top: 1.25rem; }
-.front-hero .btn, .front-table .btn { background: var(--c-callout); color: var(--c-ink); }
-.front-hero :focus-visible, .front-table :focus-visible { outline-color: var(--c-on-dark); }
-.front-photo { position: relative; margin: 0; min-width: 0; }
-.front-photo img { width: 100%; height: 100%; aspect-ratio: 16 / 11; object-fit: cover; object-position: 51% 66%; }
-.front-photo figcaption {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  background: var(--c-hero);
-  padding: .3rem .7rem;
-  font-size: .72rem;
-}
-.front-detail { padding-block: 0; background: var(--c-surface); }
-.front-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; }
-.front-facts > div { padding: 1.25rem .55rem; }
-.front-facts > div + div { border-left: 1px solid var(--c-line); padding-left: clamp(.55rem, 3vw, 2rem); }
-.front-facts dt { font: 400 clamp(1.18rem, 4vw, 2.5rem)/1.2 var(--f-display); }
-.front-facts dd { margin: .35rem 0 0; font-size: clamp(.72rem, 2.8vw, .95rem); line-height: 1.3; }
-.front-story .wrap, .front-table .wrap, .front-menu .wrap, .front-price .wrap { row-gap: 1.5rem; }
-.story-photo { margin: 0; }
-.story-photo img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; object-position: 50% 59%; }
-.story-copy h2, .table-copy h2, .front-menu h2, .front-price h2 { margin-bottom: 1rem; }
-.story-copy .link { margin-top: 1rem; }
-.front-table { background: var(--c-hero); color: var(--c-on-dark); }
-.front-table img, .front-menu img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
-.front-menu { background: var(--c-surface); }
-.front-prices { align-self: center; margin: 0; }
-.front-prices dt a { text-underline-offset: .25em; }
-.front-prices dd { font-weight: 600; }
-
-.guest-shortcuts { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .7rem; }
-.guest-shortcuts button {
-  font: inherit;
-  color: inherit;
-  background: var(--c-paper);
-  border: 1px solid var(--c-accent);
-  min-height: 44px;
-  padding: .4rem .65rem;
-  cursor: pointer;
-}
-.guest-shortcuts button[aria-pressed="true"] { background: var(--c-accent); color: var(--c-paper); }
-.price-explainer { margin-block: 1.2rem 0; }
-.price-explainer summary, .mail-preview summary { cursor: pointer; min-height: 44px; padding-block: .55rem; font-weight: 600; }
-.price-explainer .chart { margin-top: 1rem; }
-.mail-preview textarea { display: block; width: 100%; margin-top: .3rem; padding: .75rem; font: inherit; color: inherit; background: var(--c-paper); border: 1px solid var(--c-accent); resize: vertical; }
-.mail-preview label { font-size: var(--t-14); }
-.rundt-ramme { height: auto; min-height: 100%; }
-.rundt-scene { flex: 1 0 0; min-height: clamp(220px, 42dvh, 510px); }
-.rundt-visning { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .6rem; }
-.rundt-planer { overflow: visible; }
-.rundt-planer figure.valgt { outline-offset: -2px; }
-
-@media (min-width: 900px) {
-  .nav { gap: 1.5rem; }
-  .front-hero { grid-template-columns: 5fr 7fr; min-height: clamp(500px, 72svh, 760px); }
-  .front-intro { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
-  .front-photo img { position: absolute; inset: 0; aspect-ratio: auto; }
-  .front-facts > div { padding-block: 1.65rem; }
-  .front-story .story-photo { grid-column: 2 / 6; }
-  .story-photo img { aspect-ratio: 4 / 5; }
-  .front-story .story-copy { grid-column: 7 / 12; align-self: center; }
-  .front-table .table-copy, .front-menu .wrap > div { grid-column: 1 / 6; align-self: center; }
-  .front-table img, .front-menu img { grid-column: 7 / -1; }
-  .front-price-copy { grid-column: 1 / 7; }
-  .front-prices { grid-column: 8 / -1; }
 }

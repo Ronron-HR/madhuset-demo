@@ -4,11 +4,13 @@
 @font-face { font-family: "Public Sans"; font-weight: 600; font-style: normal; font-display: swap; src: url("../fonts/public-sans-latin-600-normal.woff2") format("woff2"); }
 
 :root {
-  --c-ink: #1C2721;
-  --c-paper: #FAF8EF;
-  --c-surface: #EEE9DA;
-  --c-accent: #305544;
-  --c-line: #C9C6B8;
+  --c-ink: #231C15;
+  --c-paper: #FBF9F4;
+  --c-surface: #EFE8DA;
+  --c-accent: #7B4A20;
+  --c-line: #D8CFBE;
+  --c-sun: #E9B824;
+  --c-oak: #A9743A;
 
   --f-display: "Young Serif", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --f-body: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;

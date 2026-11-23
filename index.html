@@ -17,7 +17,7 @@
 </head>
 <body>
 <a class="skip" href="#indhold">Gå til indhold</a>
-<div class="demo"><p>Demovisning af OviaSpecs. Ikke Madhusets egen side.</p></div>
+<div class="demo"><p>Demo af OviaSpecs · ikke Madhusets egen side</p></div>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="index.html">Madhuset Løgten</a>
@@ -31,28 +31,29 @@
 </header>
 
 <main id="indhold">
-  <section class="front-hero">
-    <div class="front-intro">
-      <p class="venue-line">Bytorvet i Løgten</p>
-      <h1>Et helt hus<br>til jeres fest.</h1>
-      <p class="lead">Saml 25–60 gæster om tre retter og syv timer sammen i Madhuset.</p>
+  <section class="entrance">
+    <figure class="entrance-foto">
+      <img src="img/sal.webp" width="1920" height="1281" fetchpriority="high" alt="Dækkede langborde med hvide duge, træstole, vinglas og gule blomster i Madhuset Løgten, set ind i salen">
+      <figcaption>Foto: RAISFOTO</figcaption>
+      <button type="button" class="btn btn-sek entrance-3d" data-rundt>Se jeres bord i 3D</button>
+    </figure>
+    <div class="entrance-panel">
+      <p class="where">Selskabslokale i Løgten · 25–60 gæster</p>
+      <h1>Hele huset til jeres fest</h1>
+      <p>3-retters buffet og huset i 7 timer.</p>
       <div class="actions">
         <a class="btn" href="pris.html">Beregn jeres pris</a>
-        <button type="button" class="knaplink" data-rundt>Prøv bordplanen i 3D</button>
+        <a class="link" href="tel:+4593408541">Ring 93 40 85 41</a>
       </div>
     </div>
-    <figure class="front-photo">
-      <img src="img/sal.webp" width="1920" height="1281" fetchpriority="high" alt="Dækkede langborde med træstole og gule blomster i Madhuset Løgten">
-      <figcaption>Madhuset Løgten · Foto: RAISFOTO</figcaption>
-    </figure>
   </section>
 
   <section class="front-detail">
     <div class="wrap">
       <dl class="front-facts" aria-label="Det får I med">
-        <div><dt>25–60</dt><dd>gæster ved bordene</dd></div>
-        <div><dt>7 timer</dt><dd>med huset til jeres selskab</dd></div>
-        <div><dt>3 retter</dt><dd>som buffet med kok i køkkenet</dd></div>
+        <div><dt>25–60</dt><dd>gæster</dd></div>
+        <div><dt>7 timer</dt><dd>med huset</dd></div>
+        <div><dt>3 retter</dt><dd>som buffet</dd></div>
       </dl>
     </div>
   </section>
@@ -77,11 +78,20 @@
   <section class="front-table">
     <div class="wrap">
       <div class="table-copy">
-        <h2>Prøv to bordopstillinger</h2>
-        <p>Se forskellen på et selskab med 30 og 55 gæster. Drej rundt i illustrationen, og tag gæstetallet med videre til beregneren.</p>
-        <button type="button" class="btn" data-rundt>Åbn bordplanen</button>
+        <h2>Se jeres bord, før I booker</h2>
+        <p>Sammenlign en opstilling til 30 gæster med en til 55. Drej rundt i den illustrerede bordplan, og tag gæstetallet med videre til beregneren.</p>
+        <button type="button" class="btn" data-rundt>Se jeres bord i 3D</button>
       </div>
-      <img src="img/sal-vindue.webp" width="800" height="534" loading="lazy" alt="Dækkede langborde foran vinduerne i Madhuset">
+      <div class="planer">
+        <figure>
+          <svg id="plan30" class="plan" aria-hidden="true"></svg>
+          <figcaption class="small">30 gæster. Illustreret bordplan.</figcaption>
+        </figure>
+        <figure>
+          <svg id="plan55" class="plan" aria-hidden="true"></svg>
+          <figcaption class="small">55 gæster. Illustreret bordplan.</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
@@ -116,28 +126,46 @@
 </main>
 
 <dialog id="rundt" aria-labelledby="rundt-titel">
-  <div class="rundt-ramme">
+  <div class="rundt-ramme" id="rundt-ramme" data-fane="plan">
     <div class="rundt-top">
-      <h2 id="rundt-titel">Prøv bordplanen i 3D</h2>
+      <h2 id="rundt-titel">Se jeres bord i 3D</h2>
       <button type="button" class="knaplink" data-luk>Luk</button>
     </div>
-    <p class="small">3D-illustration af mulige bordopstillinger. Den faktiske opstilling aftaler I med Madhuset.</p>
-    <div class="rundt-visning">
-    <div class="rundt-valg" role="group" aria-label="Antal gæster">
-      <button type="button" data-antal="30" aria-pressed="true">30 gæster</button>
-      <button type="button" data-antal="55" aria-pressed="false">55 gæster</button>
+    <div class="rundt-faner" role="group" aria-label="Vælg visning">
+      <button type="button" data-fane="plan" aria-pressed="true">Illustreret bordplan</button>
+      <button type="button" data-fane="foto" aria-pressed="false">Foto af lokalet</button>
     </div>
-    <button type="button" class="knaplink" id="rundt-skift">Se tegning ovenfra</button>
+    <div class="rundt-hoved">
+      <div class="rundt-model">
+        <div class="rundt-scene-ramme">
+          <div class="rundt-scene" id="rundt-scene" tabindex="0" role="application" aria-label="Illustreret bordplan i 3D. Træk eller brug piletasterne for at dreje. Home nulstiller."></div>
+          <div class="rundt-planer" id="rundt-planer" hidden></div>
+          <p class="rundt-maerke" id="rundt-maerke" role="status">30 gæster · 3 borde</p>
+        </div>
+        <p class="small">Illustreret bordplan. Mål og indretning er vejledende. Den faktiske opstilling aftaler I med Madhuset.</p>
+        <p class="small" id="rundt-status" role="status"></p>
+      </div>
+      <figure class="rundt-foto">
+        <img src="img/sal.webp" width="1920" height="1281" loading="lazy" alt="Dækkede langborde med træstole, vinglas og gule blomster i Madhuset Løgten">
+        <figcaption class="small">Foto af lokalet. Foto: RAISFOTO.</figcaption>
+      </figure>
     </div>
-    <div class="rundt-scene" id="rundt-scene" tabindex="0" role="application" aria-label="Tredimensionel illustration. Træk eller brug piletasterne for at dreje. Home nulstiller."></div>
-    <div class="rundt-planer" id="rundt-planer" hidden></div>
-    <p class="small" id="rundt-status" role="status"></p>
-    <div class="rundt-bund">
+    <div class="rundt-styring">
+      <div class="rundt-valg" role="group" aria-label="Antal gæster">
+        <button type="button" data-antal="30" aria-pressed="true">30 gæster</button>
+        <button type="button" data-antal="55" aria-pressed="false">55 gæster</button>
+      </div>
+      <div class="rundt-valg" id="rundt-vinkler" role="group" aria-label="Synsvinkel">
+        <button type="button" data-vinkel="langs" aria-pressed="true">Se langs bordene</button>
+        <button type="button" data-vinkel="oppefra" aria-pressed="false">Se ovenfra</button>
+      </div>
       <div class="rundt-kontrol" id="rundt-kontrol">
         <button type="button" data-drej="-1">Drej til venstre</button>
         <button type="button" data-drej="1">Drej til højre</button>
         <button type="button" data-nulstil>Nulstil udsyn</button>
       </div>
+    </div>
+    <div class="rundt-bund">
       <a class="btn" id="rundt-pris" href="pris.html?gaester=30">Beregn pris for 30 gæster</a>
     </div>
   </div>
@@ -153,5 +181,6 @@
   </div>
 </footer>
 <script type="module" src="js/rundt.js"></script>
+<script type="module" src="js/lokalet.js"></script>
 </body>
 </html>
