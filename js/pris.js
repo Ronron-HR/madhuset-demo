@@ -39,6 +39,44 @@ function line(label, value, note) {
   return row;
 }
 
+// Diagram: samlet pris for mad, lokale og rengøring (uden tilvalg) for 25-60 gæster
+const SVGNS = "http://www.w3.org/2000/svg";
+const CH = { w: 360, h: 200, left: 48, right: 8, top: 8, bottom: 28, yMax: 35000 };
+
+function svgEl(name, attrs, text) {
+  const el = document.createElementNS(SVGNS, name);
+  for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+  if (text) el.textContent = text;
+  return el;
+}
+
+const grundpris = (g) => g * (g >= PRIS.graense ? PRIS.kuvertStor : PRIS.kuvertLille) + PRIS.rengoering;
+
+function drawChart(guests) {
+  const pw = CH.w - CH.left - CH.right;
+  const ph = CH.h - CH.top - CH.bottom;
+  const x = (g) => CH.left + ((g - 25) / 35) * pw;
+  const y = (v) => CH.top + ph - (v / CH.yMax) * ph;
+  const parts = [];
+
+  for (const v of [0, 10000, 20000, 30000]) {
+    parts.push(svgEl("line", { class: "grid", x1: CH.left, x2: CH.w - CH.right, y1: y(v), y2: y(v) }));
+    parts.push(svgEl("text", { x: CH.left - 6, y: y(v) + 4, "text-anchor": "end" }, fmt.format(v)));
+  }
+  for (const g of [25, 35, 45, 60]) {
+    parts.push(svgEl("text", { x: x(g), y: CH.h - 8, "text-anchor": "middle" }, String(g)));
+  }
+  let d = "";
+  for (let g = 25; g <= 60; g++) d += (g === 25 ? "M" : "L") + x(g).toFixed(1) + " " + y(grundpris(g)).toFixed(1);
+  parts.push(svgEl("path", { class: "line", d }));
+  parts.push(svgEl("line", { class: "guide", x1: x(guests), x2: x(guests), y1: y(grundpris(guests)), y2: y(0) }));
+  parts.push(svgEl("circle", { class: "mark", cx: x(guests), cy: y(grundpris(guests)), r: 5 }));
+  $("chart").replaceChildren(...parts);
+}
+
+$("chart-cap").textContent =
+  `Samlet pris i kr. for mad, lokale og rengøring efter antal gæster. Med ${PRIS.graense - 1} gæster er den ${kr(grundpris(PRIS.graense - 1))}, med ${PRIS.graense} gæster ${kr(grundpris(PRIS.graense))}, fordi kuvertprisen falder fra ${kr(PRIS.kuvertLille)} til ${kr(PRIS.kuvertStor)}`;
+
 function update() {
   const guests = num(guestsInput, 25, 60);
   const extra = num($("extra"), 0, 5);
@@ -57,9 +95,11 @@ function update() {
 
   const total = rows.reduce((sum, r) => sum + r[1], 0);
   $("total").textContent = kr(total);
+  $("perguest").textContent = `${kr(Math.round(total / guests))} pr. gæst, alt medregnet undtagen drikkevarer`;
+  drawChart(guests);
   $("lines").replaceChildren(...rows.map((r) => line(r[0], kr(r[1]), r[2])));
 
-  const body = `Hej\n\nVi vil gerne have et oplæg til et selskab for ${guests} gæster.\nDato: \nOnsker: \n\nVenlig hilsen`;
+  const body = `Hej\n\nVi vil gerne have et oplæg til et selskab for ${guests} gæster.\nDato: \nØnsker: \n\nVenlig hilsen`;
   $("mail").href = "mailto:info@mondrups.com?subject=" + encodeURIComponent(`Forespørgsel: selskab for ${guests} gæster`) + "&body=" + encodeURIComponent(body);
 }
 

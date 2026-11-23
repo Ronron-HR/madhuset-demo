@@ -7,3 +7,5 @@ Indhold, priser og kontaktoplysninger er hentet fra mondrups.com/madhuset den 23
 Ren HTML/CSS med ét lille JS-script (prisberegneren). Ingen afhængigheder.
 
 Billede: img/brod.jpg er et stockfoto af Rebekah Vos fra Unsplash (Unsplash-licensen). Det er kun stemning og viser ikke Madhuset.
+
+Fonte: Young Serif og Public Sans (SIL Open Font License 1.1), selv-hostet i fonts/.

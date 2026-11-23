@@ -6,6 +6,7 @@
 <title>Madhuset Løgten: selskabslokale til 25-60 gæster | Demo</title>
 <meta name="description" content="Selskabslokale på Bytorvet i Løgten. 499 kr. pr. kuvert ved 35-60 gæster, 3-retters buffet og huset i 7 timer. Regn selskabets pris ud.">
 <meta name="robots" content="noindex">
+<link rel="preload" href="fonts/young-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/site.css">
 <script type="application/ld+json">
@@ -30,13 +31,24 @@
   <section class="hero">
     <div class="wrap">
       <h1>Huset er jeres i 7 timer.</h1>
-      <p class="lead">Selskabslokale på Bytorvet i Løgten til 25-60 gæster. 3-retters buffet, kokken i køkkenet og en afrydder under hele selskabet.</p>
-      <div class="price-wrap">
-        <p class="price-big num"><span class="kr">499 kr.</span> pr. kuvert</p>
+      <div class="lead-col">
+        <p class="lead">Selskabslokale på Bytorvet i Løgten til 25-60 gæster. 3-retters buffet, kokken i køkkenet og en afrydder under hele selskabet.</p>
+      </div>
+      <div class="price-col">
+        <p class="price-big num"><span class="kr">499 kr.</span> <span class="per">pr. kuvert</span></p>
         <p>Ved 35-60 gæster. Er I 25-34 gæster, er prisen 599 kr. pr. kuvert.</p>
         <div class="actions">
           <a class="btn" href="pris.html">Regn jeres pris ud</a>
           <a class="link" href="tel:+4593408541">Ring 93 40 85 41</a>
+        </div>
+      </div>
+      <div class="hours">
+        <div class="hours-bar" role="img" aria-label="Time 1 til 7 er med i prisen. Fra time 8 koster hver påbegyndt time 1.500 kr.">
+          <span class="in">1</span><span class="in">2</span><span class="in">3</span><span class="in">4</span><span class="in">5</span><span class="in">6</span><span class="in">7</span><span class="out">8</span><span class="out">9</span><span class="out">10</span>
+        </div>
+        <div class="hours-key">
+          <p><i class="sw in"></i>Time 1-7 er med i prisen.</p>
+          <p><i class="sw out"></i>Derefter 1.500 kr. pr. påbegyndt time.</p>
         </div>
       </div>
     </div>
@@ -54,17 +66,32 @@
   <section class="includes">
     <div class="wrap">
       <h2>Det er med i prisen</h2>
-      <ul class="rows">
-        <li>3-retters menu serveret som buffet</li>
-        <li>Kokken i køkkenet</li>
-        <li>Surdejsbrød med dyppelser</li>
-        <li>Lokal kaffe på kande</li>
-        <li>Afrydder under hele selskabet</li>
-        <li>Intromøde og adgang til lokalet inden selskabet</li>
-        <li>Bordopstilling som ønsket, bordopdækning aftalt sammen</li>
-        <li>Klargøring af terrasseområdet efter sæson</li>
-        <li>Musikanlæg og projektor</li>
-      </ul>
+      <div class="groups">
+        <div class="group">
+          <h3>Maden</h3>
+          <ul class="rows">
+            <li>3-retters menu serveret som buffet</li>
+            <li>Kokken i køkkenet</li>
+            <li>Surdejsbrød med dyppelser</li>
+            <li>Lokal kaffe på kande</li>
+          </ul>
+        </div>
+        <div class="group">
+          <h3>Før selskabet</h3>
+          <ul class="rows">
+            <li>Intromøde og adgang til lokalet inden selskabet</li>
+            <li>Bordopstilling som ønsket, bordopdækning aftalt sammen</li>
+            <li>Terrasseområdet gøres klar efter sæson</li>
+          </ul>
+        </div>
+        <div class="group">
+          <h3>Under selskabet</h3>
+          <ul class="rows">
+            <li>Afrydder under hele selskabet</li>
+            <li>Musikanlæg og projektor</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
