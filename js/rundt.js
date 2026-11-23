@@ -2,6 +2,9 @@
 import { planSvg, ANTAL } from "./plan.js";
 
 const BORDE = { 30: 3, 55: 5 };
+
+// Bordplanerne på siden (reserveret plads i HTML)
+for (const n of ANTAL) { const plads = document.getElementById(`plan${n}`); if (plads) plads.replaceWith(planSvg(n)); }
 const dlg = document.getElementById("rundt");
 const ramme = document.getElementById("rundt-ramme");
 const scene = document.getElementById("rundt-scene");
@@ -62,6 +65,24 @@ function visPlantegninger() {
   kontrol.hidden = true;
   vinkler.hidden = true;
   visValg();
+}
+
+// 3D-koden (ca. 670 KB) hentes først efter første visning, når browseren er ledig, eller så snart gæsten peger på en 3D-knap.
+// På langsomme forbindelser og med Datasparer hentes den kun ved pegning, så den er klar, når der klikkes.
+let forhentet = false;
+function forhent() {
+  if (forhentet || mangler3d) return;
+  forhentet = true;
+  import("./rundt3d.js").catch(() => { forhentet = false; });
+}
+const forb = navigator.connection;
+const langsom = !!forb && (forb.saveData || /(^|-)2g|3g/.test(forb.effectiveType || ""));
+for (const knap of document.querySelectorAll("[data-rundt]")) {
+  for (const ev of ["pointerenter", "touchstart", "focus"]) knap.addEventListener(ev, forhent, { once: true, passive: true });
+}
+if (!langsom) {
+  const ledig = window.requestIdleCallback || ((f) => setTimeout(f, 2500));
+  window.addEventListener("load", () => ledig(forhent, { timeout: 5000 }), { once: true });
 }
 
 async function aabn3d() {

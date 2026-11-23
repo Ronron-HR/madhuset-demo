@@ -22,9 +22,11 @@ const klem = (x) => Math.min(1, Math.max(0, x));
 export function start(container, { reduceret = false } = {}) {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   if (!renderer.getContext()) throw new Error("WebGL mangler");
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.autoUpdate = false; // lyset står stille, så skyggerne kun tegnes, når møbler flytter sig
+  let skyggeNy = true;
   renderer.domElement.style.touchAction = "none";
   container.append(renderer.domElement);
 
@@ -40,7 +42,7 @@ export function start(container, { reduceret = false } = {}) {
   const lys = new THREE.DirectionalLight(0xffdfb0, 1.35);
   lys.position.set(-10, 6.5, 3);
   lys.castShadow = true;
-  lys.shadow.mapSize.set(2048, 2048);
+  lys.shadow.mapSize.set(window.innerWidth < 900 ? 1024 : 2048, window.innerWidth < 900 ? 1024 : 2048);
   lys.shadow.radius = 4;
   Object.assign(lys.shadow.camera, { left: -12, right: 12, top: 10, bottom: -10, near: 1, far: 40 });
   lys.shadow.bias = -0.0005;
@@ -262,6 +264,7 @@ export function start(container, { reduceret = false } = {}) {
     borde.forEach(tegnBord);
     opdaterInstanser();
     antalNu = antal;
+    skyggeNy = true;
   }
 
   const v = { az: 0, pol: 1, radius: 5, tx: 0, ty: 0.8, tz: 0 };
@@ -320,6 +323,7 @@ export function start(container, { reduceret = false } = {}) {
       v.tz + v.radius * Math.sin(v.pol) * Math.cos(v.az)
     );
     camera.lookAt(v.tx, v.ty, v.tz);
+    if (skyggeNy || ændret) { renderer.shadowMap.needsUpdate = true; skyggeNy = false; }
     renderer.render(scene, camera);
     if (igen) tegn();
   }

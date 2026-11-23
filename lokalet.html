@@ -8,8 +8,12 @@
 <meta name="robots" content="noindex">
 <link rel="icon" href="data:,">
 <link rel="preload" href="fonts/young-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/public-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/public-sans-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/site.css">
+<link rel="modulepreload" href="js/rundt.js">
+<link rel="modulepreload" href="js/plan.js">
 </head>
 <body>
 <a class="skip" href="#indhold">Gå til indhold</a>
@@ -54,11 +58,11 @@
       <h2>Illustreret bordplan til 30 og 55 gæster</h2>
       <div class="planer" style="grid-column: 1 / -1;">
         <figure>
-          <svg id="plan30" class="plan" aria-hidden="true"></svg>
+          <svg id="plan30" class="plan" viewBox="-7 -4.75 14 9.5" aria-hidden="true"></svg>
           <figcaption class="small">30 gæster. Illustration af en mulig bordopstilling. <a href="pris.html?gaester=30">Beregn pris for 30 gæster</a></figcaption>
         </figure>
         <figure>
-          <svg id="plan55" class="plan" aria-hidden="true"></svg>
+          <svg id="plan55" class="plan" viewBox="-7 -4.75 14 9.5" aria-hidden="true"></svg>
           <figcaption class="small">55 gæster. Illustration af en mulig bordopstilling. <a href="pris.html?gaester=55">Beregn pris for 55 gæster</a></figcaption>
         </figure>
       </div>
@@ -70,11 +74,11 @@
   <section class="naer">
     <div class="wrap">
       <figure class="naer-bord">
-        <img src="img/sal-bar.webp" width="600" height="400" loading="lazy" alt="Træreol med glas og flasker og en lerkrukke med blomster i lokalet" style="aspect-ratio: 4 / 5;">
+        <img src="img/sal-bar.webp" width="600" height="400" loading="lazy" decoding="async" alt="Træreol med glas og flasker og en lerkrukke med blomster i lokalet" style="aspect-ratio: 4 / 5;">
         <figcaption class="small">Reol med glas i lokalet. Foto: RAISFOTO.</figcaption>
       </figure>
       <figure class="naer-sal">
-        <img src="img/sal-vindue.webp" width="800" height="534" loading="lazy" alt="Lange borde med træstole og dækkede pladser foran store vinduer">
+        <img src="img/sal-vindue.webp" width="800" height="534" loading="lazy" decoding="async" alt="Lange borde med træstole og dækkede pladser foran store vinduer">
         <figcaption class="small">Langborde og vinduer.</figcaption>
       </figure>
       <div class="naer-tekst">
@@ -135,7 +139,7 @@
         <p class="small" id="rundt-status" role="status"></p>
       </div>
       <figure class="rundt-foto">
-        <img src="img/sal-960.webp" width="960" height="641" loading="lazy" alt="Dækkede langborde med træstole, vinglas og gule blomster i Madhuset Løgten">
+        <img src="img/sal-960.webp" width="960" height="641" loading="lazy" decoding="async" alt="Dækkede langborde med træstole, vinglas og gule blomster i Madhuset Løgten">
         <figcaption class="small">Foto af lokalet. Foto: RAISFOTO.</figcaption>
       </figure>
     </div>
@@ -170,6 +174,5 @@
   </div>
 </footer>
 <script type="module" src="js/rundt.js"></script>
-<script type="module" src="js/lokalet.js"></script>
 </body>
 </html>

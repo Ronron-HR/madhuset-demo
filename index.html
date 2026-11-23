@@ -8,8 +8,12 @@
 <meta name="robots" content="noindex">
 <link rel="icon" href="data:,">
 <link rel="preload" href="fonts/young-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/public-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/public-sans-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/site.css">
+<link rel="modulepreload" href="js/rundt.js">
+<link rel="modulepreload" href="js/plan.js">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"EventVenue","name":"Madhuset Løgten","telephone":"+4593408541","email":"info@mondrups.com","address":{"@type":"PostalAddress","streetAddress":"Bytorvet 13","postalCode":"8541","addressLocality":"Skødstrup","addressCountry":"DK"},"maximumAttendeeCapacity":60}
 </script>
@@ -67,7 +71,7 @@
         <button type="button" class="vej-foto" data-rundt aria-label="Se jeres bord i 3D. Foto af en dækket tallerken og glas">
           <picture>
             <source media="(max-width: 899px)" srcset="img/bord-640.webp" width="640" height="959">
-            <img src="img/bord-1000.webp" width="1000" height="1499" loading="lazy" alt="Dækket bord med vinglas, tallerken og en ret i en lys skål på hvid dug">
+            <img src="img/bord-1000.webp" width="1000" height="1499" loading="lazy" decoding="async" alt="Dækket bord med vinglas, tallerken og en ret i en lys skål på hvid dug">
           </picture>
           <span class="vej-merke">Se jeres bord i 3D</span>
         </button>
@@ -88,7 +92,7 @@
         <a class="vej-foto" href="bestil.html" aria-label="Bestil mad. Foto af et dækket træbord med snacks">
           <picture>
             <source media="(max-width: 899px)" srcset="img/ig-nytaar-bord-720.webp" width="720" height="480">
-            <img src="img/ig-nytaar-bord-1280.webp" width="1280" height="854" loading="lazy" alt="Dækket træbord set ovenfra med skåle med snacks og guldfarvet serpentine">
+            <img src="img/ig-nytaar-bord-1280.webp" width="1280" height="854" loading="lazy" decoding="async" alt="Dækket træbord set ovenfra med skåle med snacks og guldfarvet serpentine">
           </picture>
           <span class="vej-merke">Bestil mad</span>
         </a>
@@ -110,7 +114,7 @@
     <div class="wrap">
       <figure class="story-photo">
         <picture>
-          <img src="img/sal-vindue.webp" width="800" height="534" loading="lazy" alt="Lange borde med træstole og dækkede pladser foran store vinduer">
+          <img src="img/sal-vindue.webp" width="800" height="534" loading="lazy" decoding="async" alt="Lange borde med træstole og dækkede pladser foran store vinduer">
         </picture>
       </figure>
       <div class="story-copy">
@@ -134,11 +138,11 @@
       </div>
       <div class="planer">
         <figure>
-          <svg id="plan30" class="plan" aria-hidden="true"></svg>
+          <svg id="plan30" class="plan" viewBox="-7 -4.75 14 9.5" aria-hidden="true"></svg>
           <figcaption class="small">30 gæster. Illustreret bordplan.</figcaption>
         </figure>
         <figure>
-          <svg id="plan55" class="plan" aria-hidden="true"></svg>
+          <svg id="plan55" class="plan" viewBox="-7 -4.75 14 9.5" aria-hidden="true"></svg>
           <figcaption class="small">55 gæster. Illustreret bordplan.</figcaption>
         </figure>
       </div>
@@ -185,7 +189,7 @@
         <p class="small" id="rundt-status" role="status"></p>
       </div>
       <figure class="rundt-foto">
-        <img src="img/sal-960.webp" width="960" height="641" loading="lazy" alt="Dækkede langborde med træstole, vinglas og gule blomster i Madhuset Løgten">
+        <img src="img/sal-960.webp" width="960" height="641" loading="lazy" decoding="async" alt="Dækkede langborde med træstole, vinglas og gule blomster i Madhuset Løgten">
         <figcaption class="small">Foto af lokalet. Foto: RAISFOTO.</figcaption>
       </figure>
     </div>
@@ -220,6 +224,5 @@
   </div>
 </footer>
 <script type="module" src="js/rundt.js"></script>
-<script type="module" src="js/lokalet.js"></script>
 </body>
 </html>

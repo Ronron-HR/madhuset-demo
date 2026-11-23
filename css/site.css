@@ -367,3 +367,8 @@ dialog::backdrop { background: var(--c-ink); }
   .tilbud-tekst { grid-column: 1 / 7; }
   .tilbud-form { grid-column: 7 / -1; margin-top: 0; max-width: none; }
 }
+
+/* Reserveret plads, så siden ikke hopper, når beregneren udfylder tal */
+#total-sub { min-height: 3em; }
+#lines { min-height: 11.5rem; }
+.rundt-maerke { min-width: 9.5rem; }
