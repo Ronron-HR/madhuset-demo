@@ -53,7 +53,8 @@ export function start(container, { reduceret = false } = {}) {
     trae: mat(c.trae), trae2: mat(c.trae2),
     sol: mat(c.sol, { emissive: c.sol, emissiveIntensity: 0.15 }), tallerken: mat(c.dug, { roughness: 0.35, emissive: c.dug, emissiveIntensity: 0.1 }),
     glas: mat(c.glas, { transparent: true, opacity: 0.5, roughness: 0.08 }),
-    lys: mat(c.lys, { emissive: c.lys, emissiveIntensity: 0.55 }), flamme: mat(new THREE.Color("#FFD27A"), { emissive: new THREE.Color("#FFB84D"), emissiveIntensity: 1 }),
+    lys: mat(c.lys, { emissive: c.lys, emissiveIntensity: 0.55 }), teal: mat(new THREE.Color("#4F7F86")), blaa: mat(new THREE.Color("#7F95A0"), { roughness: 0.5 }), hvid: mat(new THREE.Color("#FFFFFF"), { emissive: new THREE.Color("#FFFFFF"), emissiveIntensity: 0.25 }),
+    flamme: mat(new THREE.Color("#FFD27A"), { emissive: new THREE.Color("#FFB84D"), emissiveIntensity: 1 }),
   };
 
   // Plankegulv af lyst egetræ som lille tekstur. Plankerne løber langs bordene.
@@ -82,7 +83,7 @@ export function start(container, { reduceret = false } = {}) {
   gulv.receiveShadow = true;
   scene.add(gulv);
   // Bagvæg bag buffetten, så scenen læses som et rum
-  const vaeg = new THREE.Mesh(new THREE.PlaneGeometry(ROOM.w, 3.2), mat(new THREE.Color("#F2EFE7"), { emissive: new THREE.Color("#F2EFE7"), emissiveIntensity: 0.5 }));
+  const vaeg = new THREE.Mesh(new THREE.PlaneGeometry(ROOM.w, 3.2), mat(new THREE.Color("#D4DADB"), { emissive: new THREE.Color("#D4DADB"), emissiveIntensity: 0.5 }));
   vaeg.position.set(0, 1.6, -ROOM.d / 2);
   vaeg.receiveShadow = true;
   scene.add(vaeg);
@@ -99,8 +100,11 @@ export function start(container, { reduceret = false } = {}) {
     top: geo(new THREE.BoxGeometry(1.14, 0.04, 4.34)),
     vase: geo(new THREE.CylinderGeometry(0.035, 0.05, 0.14, 10)),
     blomst: geo(new THREE.IcosahedronGeometry(0.075, 1)),
-    lysGlas: geo(new THREE.CylinderGeometry(0.045, 0.045, 0.07, 12)),
+    lysGlas: geo(new THREE.CylinderGeometry(0.045, 0.045, 0.09, 12)),
     flamme: geo(new THREE.SphereGeometry(0.014, 6, 5)),
+    undertallerken: geo(new THREE.CylinderGeometry(0.19, 0.19, 0.01, 18)),
+    tumbler: geo(new THREE.CylinderGeometry(0.03, 0.026, 0.085, 10)),
+    hyldeglas: geo(new THREE.CylinderGeometry(0.045, 0.03, 0.2, 8)),
     saede: geo(new THREE.BoxGeometry(0.44, 0.05, 0.44)),
     // krydsryg som på Madhusets stole: to stolper, en topskinne og to kryds
     stolpe: geo(new THREE.BoxGeometry(0.04, 0.52, 0.04)),
@@ -114,6 +118,32 @@ export function start(container, { reduceret = false } = {}) {
   };
   const sk = (mesh, kast = true) => { mesh.castShadow = kast; mesh.receiveShadow = true; return mesh; };
 
+  // Reol og skænk på bagvæggen efter Madhusets fotos: egetræ, blågrønne skuffer og glas på hylderne. Mål er vejledende.
+  const bz = -ROOM.d / 2 + 0.28;
+  const skaenk = sk(new THREE.Mesh(geo(new THREE.BoxGeometry(6.4, 0.9, 0.45)), m.trae));
+  skaenk.position.set(0, 0.45, bz);
+  scene.add(skaenk);
+  for (const dx of [-2.1, 0, 2.1]) {
+    const front = new THREE.Mesh(geo(new THREE.BoxGeometry(1.9, 0.55, 0.02)), m.teal);
+    front.position.set(dx, 0.47, bz + 0.235);
+    scene.add(front);
+  }
+  const hylde = new THREE.Group();
+  const stolpeGeo = geo(new THREE.BoxGeometry(0.05, 1.1, 0.35));
+  const planGeo = geo(new THREE.BoxGeometry(6.4, 0.05, 0.35));
+  for (let k = 0; k < 6; k++) { const st = sk(new THREE.Mesh(stolpeGeo, m.trae)); st.position.set(-3.2 + k * 1.28, 0, 0); hylde.add(st); }
+  for (const dy of [-0.55, 0, 0.55]) { const pl2 = sk(new THREE.Mesh(planGeo, m.trae)); pl2.position.set(0, dy, 0); hylde.add(pl2); }
+  const hg = new THREE.InstancedMesh(G.hyldeglas, m.glas, 40);
+  const hd = new THREE.Object3D();
+  for (let i = 0; i < 40; i++) {
+    hd.position.set(-3.0 + (i % 20) * 0.315, i < 20 ? 0.125 : -0.425, 0);
+    hd.updateMatrix();
+    hg.setMatrixAt(i, hd.matrix);
+  }
+  hylde.add(hg);
+  hylde.position.set(0, 1.9, bz - 0.05);
+  scene.add(hylde);
+
   const gr = grundlag();
   // Borde: én gruppe pr. bord med oprindelse i bordets gulvpunkt
   const borde = gr.tables.map((t) => {
@@ -124,11 +154,12 @@ export function start(container, { reduceret = false } = {}) {
     // Lav pynt langs midten: tre små vaser med gule blomster og to lave lys. Så kan man stadig se ned langs bordet.
     for (const dz of [-1.45, 0, 1.45]) {
       const vase = sk(new THREE.Mesh(G.vase, m.glas)); vase.position.set(0, 0.81, dz); g.add(vase);
-      const b = sk(new THREE.Mesh(G.blomst, m.sol)); b.position.set(0, 0.94, dz); g.add(b);
+      const b = sk(new THREE.Mesh(G.blomst, m.sol)); b.position.set(-0.02, 0.94, dz); g.add(b);
+      const h = sk(new THREE.Mesh(G.blomst, m.hvid)); h.scale.setScalar(0.7); h.position.set(0.05, 0.92, dz + 0.03); g.add(h);
     }
     for (const dz of [-0.72, 0.72]) {
-      const l = new THREE.Mesh(G.lysGlas, m.lys); l.position.set(0, 0.775, dz); g.add(l);
-      const f = new THREE.Mesh(G.flamme, m.flamme); f.position.set(0, 0.835, dz); g.add(f);
+      const l = new THREE.Mesh(G.lysGlas, m.lys); l.position.set(0, 0.785, dz); g.add(l);
+      const f = new THREE.Mesh(G.flamme, m.flamme); f.position.set(0, 0.845, dz); g.add(f);
     }
     scene.add(g);
     return { g, t, x: t.x, ekstra: t.ekstra, p: 0, mål: 0, hold: 0, glid: (t.x < 0 ? -1 : 1) * 3.2 };
@@ -145,7 +176,7 @@ export function start(container, { reduceret = false } = {}) {
     scene.add(im);
     return im;
   };
-  const I = { saede: inst(G.saede, m.trae, N), stolpe: inst(G.stolpe, m.trae, N * 2), skinne: inst(G.skinne, m.trae, N), kryds: inst(G.kryds, m.trae, N * 2), ben: inst(G.ben, m.trae, N * 4), tallerken: inst(G.tallerken, m.tallerken, N), glasBowl: inst(G.glasBowl, m.glas, N), glasStilk: inst(G.glasStilk, m.glas, N), glasFod: inst(G.glasFod, m.glas, N) };
+  const I = { saede: inst(G.saede, m.trae, N), stolpe: inst(G.stolpe, m.trae, N * 2), skinne: inst(G.skinne, m.trae, N), kryds: inst(G.kryds, m.trae, N * 2), ben: inst(G.ben, m.trae, N * 4), tallerken: inst(G.tallerken, m.tallerken, N), glasBowl: inst(G.glasBowl, m.glas, N), glasStilk: inst(G.glasStilk, m.glas, N), glasFod: inst(G.glasFod, m.glas, N), undertallerken: inst(G.undertallerken, m.blaa, N), tumbler: inst(G.tumbler, m.glas, N) };
   const dummy = new THREE.Object3D();
   function sæt(im, i, x, y, z, s, rx = 0) {
     dummy.position.set(x, y * s, z);
@@ -169,7 +200,9 @@ export function start(container, { reduceret = false } = {}) {
     sæt(I.kryds, i * 2 + 1, xr, 0.74, s.z, e, -0.62);
     let b = i * 4;
     for (const dx of [-0.17, 0.17]) for (const dz of [-0.17, 0.17]) sæt(I.ben, b++, x + dx * e, 0.22, s.z + dz * e, e);
-    sæt(I.tallerken, i, s.x - s.dir * 0.58 + gx, 0.755, s.z, e);
+    sæt(I.undertallerken, i, s.x - s.dir * 0.58 + gx, 0.7475, s.z, e);
+    sæt(I.tallerken, i, s.x - s.dir * 0.58 + gx, 0.7625, s.z, e);
+    sæt(I.tumbler, i, s.x - s.dir * 0.42 + gx, 0.7825, s.z - 0.2, e);
     // vinglas ved siden af tallerkenen: fod, stilk og bæger
     const gxPos = s.x - s.dir * 0.4 + gx;
     sæt(I.glasFod, i, gxPos, 0.745, s.z + 0.2, e);
@@ -209,7 +242,7 @@ export function start(container, { reduceret = false } = {}) {
   const tekstur = new THREE.CanvasTexture(lærred);
   const label = new THREE.Sprite(new THREE.SpriteMaterial({ map: tekstur }));
   label.scale.set(1.3, 0.41, 1);
-  label.position.set(b.x, 1.65, b.z);
+  label.position.set(b.x, 1.3, b.z);
   buffet.add(label);
   scene.add(buffet);
 
