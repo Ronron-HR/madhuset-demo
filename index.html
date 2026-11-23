@@ -4,9 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Madhuset Løgten: selskabslokale til 25-60 gæster | Demo</title>
-<meta name="description" content="Selskabslokale på Bytorvet i Løgten. 499 kr. pr. kuvert ved 35-60 gæster, 3-retters buffet og huset i 7 timer. Regn selskabets pris ud.">
+<meta name="description" content="Et helt hus til jeres fest. Selskabslokale i Løgten til 25-60 gæster, 3-retters buffet og huset i 7 timer. Se prisen for jeres fest.">
 <meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
 <link rel="preload" href="fonts/young-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/sal.webp" as="image" fetchpriority="high">
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/site.css">
 <script type="application/ld+json">
@@ -14,7 +16,7 @@
 </script>
 </head>
 <body>
-<div class="demo"><p>Demo lavet af OviaSpecs. Ikke Madhusets egen side. Oplysninger og priser fra mondrups.com/madhuset, hentet 23.11.2026.</p></div>
+<div class="demo"><p>Demo af OviaSpecs. Ikke Madhusets egen side.</p></div>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="index.html">Madhuset Løgten</a>
@@ -28,38 +30,53 @@
 </header>
 
 <main>
-  <section class="hero">
+  <section class="hero2">
+    <figure class="hero-foto">
+      <img src="img/sal.webp" width="1920" height="1281" fetchpriority="high" alt="Langborde med hvide duge, træstole, vinglas og gule blomster i Madhuset Løgten">
+    </figure>
+    <div class="hero-tekst">
+      <h1>Et helt hus til jeres fest.</h1>
+      <p class="lead">Selskabslokale i Løgten til 25–60 gæster. 3-retters buffet og huset i 7 timer.</p>
+      <div class="actions">
+        <a class="btn" href="pris.html">Se pris for jeres fest</a>
+        <button type="button" class="knaplink" data-rundt>Se jer omkring</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="naer">
     <div class="wrap">
-      <h1>Huset er jeres i 7 timer.</h1>
-      <div class="lead-col">
-        <p class="lead">Selskabslokale på Bytorvet i Løgten til 25-60 gæster. 3-retters buffet, kokken i køkkenet og en afrydder under hele selskabet.</p>
-      </div>
-      <div class="price-col">
-        <p class="price-big num"><span class="kr">499 kr.</span> <span class="per">pr. kuvert</span></p>
-        <p>Ved 35-60 gæster. Er I 25-34 gæster, er prisen 599 kr. pr. kuvert.</p>
-        <div class="actions">
-          <a class="btn" href="pris.html">Regn jeres pris ud</a>
-          <a class="link" href="tel:+4593408541">Ring 93 40 85 41</a>
-        </div>
-      </div>
-      <div class="hours">
-        <div class="hours-bar" role="img" aria-label="Time 1 til 7 er med i prisen. Fra time 8 koster hver påbegyndt time 1.500 kr.">
-          <span class="in">1</span><span class="in">2</span><span class="in">3</span><span class="in">4</span><span class="in">5</span><span class="in">6</span><span class="in">7</span><span class="out">8</span><span class="out">9</span><span class="out">10</span>
-        </div>
-        <div class="hours-key">
-          <p><i class="sw in"></i>Time 1-7 er med i prisen.</p>
-          <p><i class="sw out"></i>Derefter 1.500 kr. pr. påbegyndt time.</p>
-        </div>
+      <figure class="naer-bord">
+        <img src="img/bord.webp" width="1568" height="2350" loading="lazy" alt="Nærbillede af dækket bord med vinglas, tallerken og en ret i en lys skål">
+      </figure>
+      <figure class="naer-sal">
+        <img src="img/sal-vindue.webp" width="800" height="534" loading="lazy" alt="Lange borde med træstole og dækkede pladser foran store vinduer">
+        <figcaption class="small">Langborde og vinduer i lokalet.</figcaption>
+      </figure>
+      <div class="naer-tekst">
+        <h2>Kom tættere på bordet</h2>
+        <p>I vælger selv, hvordan bordene stilles op. Maden er en 3-retters menu serveret som buffet, og kokken står i køkkenet under hele selskabet.</p>
+        <a class="link" href="lokalet.html">Se lokalet</a>
       </div>
     </div>
   </section>
 
   <section class="band">
+    <figure class="photo">
+      <img src="img/buffet.jpg" width="1200" height="800" loading="lazy" alt="Mange retter set ovenfra: skåle og tallerkener med salater, kød, rejer og tilbehør på et gråt bord">
+      <figcaption class="small">Retter fra Mondrups' materiale. Selskabsmenuen er en 3-retters buffet.</figcaption>
+    </figure>
+  </section>
+
+  <section class="includes">
     <div class="wrap">
-      <figure class="photo">
-        <div class="photo-frame"><img src="img/brod.jpg" width="1800" height="1192" alt="Brød og boller på afkølingsgitre foran en hvid murstensvæg" class="drift"></div>
-        <figcaption class="small">Illustration: stockfoto af Rebekah Vos, Unsplash. Ikke fra Madhuset.</figcaption>
-      </figure>
+      <h2>Det gør Madhuset nemt at holde fest i</h2>
+      <ul class="rows">
+        <li><strong>I må selv medbringe drikkevarer og pynt.</strong> Drikkevarer betales efter forbrug.</li>
+        <li><strong>Kokken står i køkkenet.</strong> En afrydder er der under hele selskabet.</li>
+        <li><strong>Huset er jeres i 7 timer.</strong> I kommer ind inden selskabet, og bordene stilles op, som I ønsker.</li>
+        <li><strong>Prisen kender I på forhånd.</strong> 499 kr. pr. kuvert ved 35-60 gæster, 599 kr. ved 25-34.</li>
+      </ul>
     </div>
   </section>
 
@@ -95,50 +112,55 @@
     </div>
   </section>
 
-  <section>
-    <div class="wrap">
-      <div class="bleed"><figure class="ph" role="img" aria-label="Billede mangler: lokalet indefra, opstillet til fest">BILLEDE MANGLER: lokalet indefra, opstillet til fest (bruges som stort billede her)</figure></div>
-      <p class="small" style="margin-top:var(--s-16)">25-60 gæster. I må selv medbringe drikkevarer og pynt.</p>
-    </div>
-  </section>
-
   <section class="split">
     <div class="wrap">
-      <h2>Det koster ekstra</h2>
-      <div class="ledger-wrap">
-        <dl class="ledger">
-          <div><dt>Oprydning og slutrengøring</dt><dd>1.500 kr.</dd><dd class="note">Obligatorisk.</dd></div>
-          <div><dt>Hvid dug og servietter</dt><dd>25 kr. pr. kuvert</dd></div>
-          <div><dt>Servering</dt><dd>275 kr. pr. person pr. time</dd></div>
-          <div><dt>Drikkevarer</dt><dd>Efter forbrug</dd></div>
-          <div><dt>Mere end 7 timer i huset</dt><dd>1.500 kr. pr. påbegyndt time</dd></div>
-        </dl>
-        <div class="actions"><a class="btn" href="pris.html">Regn jeres pris ud</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="split">
-    <div class="wrap">
-      <h2>Ring, så finder vi en dato</h2>
+      <h2>Spørg om jeres dato</h2>
       <div class="body">
-        <p class="lead">Ring alle ugens dage 09.00-21.00, eller skriv til os.</p>
-        <p class="lead num"><a href="tel:+4593408541">93 40 85 41</a><br><a href="mailto:info@mondrups.com">info@mondrups.com</a></p>
-        <p>Bytorvet 13, 8541 Skødstrup</p>
-        <div class="actions"><a class="link" href="kontakt.html">Se kort og kontaktoplysninger</a></div>
+        <p class="lead num">40 gæster koster 21.460 kr. inkl. obligatorisk rengøring, før tilvalg.</p>
+        <p>Vælg antal og dato, så åbner vi en udfyldt mail til huset. Eller ring.</p>
+        <div class="actions">
+          <a class="btn" href="pris.html">Se pris for jeres fest</a>
+          <a class="link" href="tel:+4593408541">Ring 93 40 85 41</a>
+        </div>
       </div>
     </div>
   </section>
 </main>
+
+<dialog id="rundt" aria-labelledby="rundt-titel">
+  <div class="rundt-ramme">
+    <div class="rundt-top">
+      <h2 id="rundt-titel">Se jer omkring</h2>
+      <button type="button" class="knaplink" data-luk>Luk</button>
+    </div>
+    <p class="small">Illustration af en mulig bordopstilling. Mål, vinduer og indretning er ikke fra stedet. Der findes endnu intet godkendt 360°-foto af lokalet.</p>
+    <div class="rundt-valg" role="group" aria-label="Antal gæster">
+      <button type="button" data-antal="30" aria-pressed="true">30 gæster</button>
+      <button type="button" data-antal="55" aria-pressed="false">55 gæster</button>
+    </div>
+    <div class="rundt-scene" id="rundt-scene" tabindex="0" role="application" aria-label="Tredimensionel illustration. Træk eller brug piletasterne for at dreje. Home nulstiller."></div>
+    <div class="rundt-planer" id="rundt-planer" hidden></div>
+    <p class="small" id="rundt-status" role="status"></p>
+    <div class="rundt-bund">
+      <div class="rundt-kontrol" id="rundt-kontrol">
+        <button type="button" data-drej="-1">Drej mod venstre</button>
+        <button type="button" data-drej="1">Drej mod højre</button>
+        <button type="button" data-nulstil>Nulstil udsyn</button>
+      </div>
+      <a class="btn" id="rundt-pris" href="pris.html?gaester=30">Beregn pris for 30 gæster</a>
+    </div>
+  </div>
+</dialog>
 
 <footer>
   <div class="wrap">
     <div>
       <p><strong>Madhuset Løgten</strong>, Bytorvet 13, 8541 Skødstrup</p>
       <p>Ring alle ugens dage 09.00-21.00: <a href="tel:+4593408541">93 40 85 41</a> · <a href="mailto:info@mondrups.com">info@mondrups.com</a></p>
-      <p>Demo lavet af OviaSpecs. Ikke godkendt af Madhuset Løgten eller Mondrups.</p>
+      <p>Demo lavet af OviaSpecs. Ikke godkendt af Madhuset Løgten eller Mondrups. Priser og oplysninger fra mondrups.com/madhuset, hentet 23.11.2026. Fotos: RAISFOTO, fra mondrups.com/madhuset, brugt i demoen og fjernes efter ønske.</p>
     </div>
   </div>
 </footer>
+<script type="module" src="js/rundt.js"></script>
 </body>
 </html>

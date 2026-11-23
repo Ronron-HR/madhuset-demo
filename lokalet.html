@@ -4,14 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Selskabslokale i Løgten til 25-60 gæster | Madhuset Løgten | Demo</title>
-<meta name="description" content="Madhuset Løgten har plads til 25-60 gæster, terrasse efter sæson, musikanlæg og bordopstilling som I ønsker. Se hvad der følger med lokalet.">
+<meta name="description" content="Madhuset Løgten har plads til 25-60 gæster, langborde, terrasse efter sæson og musikanlæg. Se billeder og to illustrerede bordopstillinger.">
 <meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
 <link rel="preload" href="fonts/young-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
-<div class="demo"><p>Demo lavet af OviaSpecs. Ikke Madhusets egen side. Oplysninger og priser fra mondrups.com/madhuset, hentet 23.11.2026.</p></div>
+<div class="demo"><p>Demo af OviaSpecs. Ikke Madhusets egen side.</p></div>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="index.html">Madhuset Løgten</a>
@@ -27,35 +28,53 @@
 <main>
   <section class="page-head">
     <div class="wrap">
-      <h1>Plads til 25-60 gæster.</h1>
+      <h1>Plads til 25–60 gæster.</h1>
       <p class="lead">Bordene stiller I op, som I vil have dem. Lokalet er åbent for jer fra før selskabet begynder.</p>
+      <div class="actions">
+        <a class="btn" href="pris.html">Se pris for jeres fest</a>
+        <button type="button" class="knaplink" data-rundt>Se jer omkring</button>
+      </div>
     </div>
   </section>
 
-  <section>
+  <section class="band">
+    <figure class="photo">
+      <img src="img/sal.webp" width="1920" height="1281" alt="Langborde med hvide duge, træstole, vinglas og gule blomster i Madhuset Løgten">
+      <figcaption class="small">Dækkede langborde. Foto: RAISFOTO.</figcaption>
+    </figure>
+  </section>
+
+  <section class="naer">
     <div class="wrap">
-      <div class="bleed"><figure class="ph" role="img" aria-label="Billede mangler: lokalet indefra med langbord">BILLEDE MANGLER: lokalet indefra med dækkede borde</figure></div>
+      <figure class="naer-bord">
+        <img src="img/sal-bar.webp" width="600" height="400" loading="lazy" alt="Træreol med glas og flasker og en lerkrukke med blomster i lokalet" style="aspect-ratio: 4 / 5;">
+        <figcaption class="small">Reol med glas i lokalet. Foto: RAISFOTO.</figcaption>
+      </figure>
+      <figure class="naer-sal">
+        <img src="img/sal-vindue.webp" width="800" height="534" loading="lazy" alt="Lange borde med træstole og dækkede pladser foran store vinduer">
+        <figcaption class="small">Langborde og vinduer.</figcaption>
+      </figure>
+      <div class="naer-tekst">
+        <h2>Det praktiske</h2>
+        <p>I må selv medbringe drikkevarer og pynt. Adgang til lokalet inden selskabet, intromøde, musikanlæg og projektor følger med. Terrasseområdet gøres klar efter sæson.</p>
+      </div>
     </div>
   </section>
 
   <section class="includes">
     <div class="wrap">
-      <h2>Det følger med lokalet</h2>
-      <ul class="rows">
-        <li>Bordopstilling som I ønsker, bordopdækning aftalt sammen</li>
-        <li>Adgang til lokalet inden selskabet</li>
-        <li>Intromøde før dagen</li>
-        <li>Terrasseområdet gøres klar efter sæson</li>
-        <li>Musikanlæg og projektor</li>
-        <li>I må medbringe egne drikkevarer og egen pynt</li>
-        <li>Huset er jeres i 7 timer, derefter 1.500 kr. pr. påbegyndt time</li>
-      </ul>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="bleed"><figure class="ph" role="img" aria-label="Billede mangler: terrassen">BILLEDE MANGLER: terrassen (kun hvis stedet har et godt billede)</figure></div>
+      <h2>To mulige opstillinger</h2>
+      <div class="planer" style="grid-column: 1 / -1;">
+        <figure>
+          <svg id="plan30" class="plan" aria-hidden="true"></svg>
+          <figcaption class="small">30 gæster. Illustration af en mulig bordopstilling. <a href="pris.html?gaester=30">Beregn pris for 30 gæster</a></figcaption>
+        </figure>
+        <figure>
+          <svg id="plan55" class="plan" aria-hidden="true"></svg>
+          <figcaption class="small">55 gæster. Illustration af en mulig bordopstilling. <a href="pris.html?gaester=55">Beregn pris for 55 gæster</a></figcaption>
+        </figure>
+      </div>
+      <p class="small" style="grid-column: 1 / -1; margin-top: var(--s-16);">Tegningerne er illustrationer. Mål, vinduer og dørplacering er ikke fra stedet, og det er ikke et godkendt 360°-foto. Den rigtige opstilling aftaler I med huset.</p>
     </div>
   </section>
 
@@ -81,22 +100,49 @@
       <div class="body">
         <p class="lead">Ring og hør, om datoen er ledig.</p>
         <div class="actions">
-          <a class="btn" href="tel:+4593408541">Ring 93 40 85 41</a>
-          <a class="link" href="pris.html">Regn prisen ud</a>
+          <a class="btn" href="pris.html">Se pris for jeres fest</a>
+          <a class="link" href="tel:+4593408541">Ring 93 40 85 41</a>
         </div>
       </div>
     </div>
   </section>
 </main>
 
+<dialog id="rundt" aria-labelledby="rundt-titel">
+  <div class="rundt-ramme">
+    <div class="rundt-top">
+      <h2 id="rundt-titel">Se jer omkring</h2>
+      <button type="button" class="knaplink" data-luk>Luk</button>
+    </div>
+    <p class="small">Illustration af en mulig bordopstilling. Mål, vinduer og indretning er ikke fra stedet. Der findes endnu intet godkendt 360°-foto af lokalet.</p>
+    <div class="rundt-valg" role="group" aria-label="Antal gæster">
+      <button type="button" data-antal="30" aria-pressed="true">30 gæster</button>
+      <button type="button" data-antal="55" aria-pressed="false">55 gæster</button>
+    </div>
+    <div class="rundt-scene" id="rundt-scene" tabindex="0" role="application" aria-label="Tredimensionel illustration. Træk eller brug piletasterne for at dreje. Home nulstiller."></div>
+    <div class="rundt-planer" id="rundt-planer" hidden></div>
+    <p class="small" id="rundt-status" role="status"></p>
+    <div class="rundt-bund">
+      <div class="rundt-kontrol" id="rundt-kontrol">
+        <button type="button" data-drej="-1">Drej mod venstre</button>
+        <button type="button" data-drej="1">Drej mod højre</button>
+        <button type="button" data-nulstil>Nulstil udsyn</button>
+      </div>
+      <a class="btn" id="rundt-pris" href="pris.html?gaester=30">Beregn pris for 30 gæster</a>
+    </div>
+  </div>
+</dialog>
+
 <footer>
   <div class="wrap">
     <div>
       <p><strong>Madhuset Løgten</strong>, Bytorvet 13, 8541 Skødstrup</p>
       <p>Ring alle ugens dage 09.00-21.00: <a href="tel:+4593408541">93 40 85 41</a> · <a href="mailto:info@mondrups.com">info@mondrups.com</a></p>
-      <p>Demo lavet af OviaSpecs. Ikke godkendt af Madhuset Løgten eller Mondrups.</p>
+      <p>Demo lavet af OviaSpecs. Ikke godkendt af Madhuset Løgten eller Mondrups. Priser og oplysninger fra mondrups.com/madhuset, hentet 23.11.2026. Fotos: RAISFOTO, fra mondrups.com/madhuset, brugt i demoen og fjernes efter ønske.</p>
     </div>
   </div>
 </footer>
+<script type="module" src="js/rundt.js"></script>
+<script type="module" src="js/lokalet.js"></script>
 </body>
 </html>

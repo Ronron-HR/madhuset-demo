@@ -4,14 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kontakt Madhuset Løgten: Bytorvet 13, Skødstrup | Demo</title>
-<meta name="description" content="Ring til Madhuset Løgten på 93 40 85 41 alle ugens dage 09.00-21.00, eller find vej til Bytorvet 13, 8541 Skødstrup.">
+<meta name="description" content="Spørg om jeres dato hos Madhuset Løgten. Ring 93 40 85 41 alle ugens dage 09.00-21.00, skriv, eller find vej til Bytorvet 13, 8541 Skødstrup.">
 <meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
 <link rel="preload" href="fonts/young-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
-<div class="demo"><p>Demo lavet af OviaSpecs. Ikke Madhusets egen side. Oplysninger og priser fra mondrups.com/madhuset, hentet 23.11.2026.</p></div>
+<div class="demo"><p>Demo af OviaSpecs. Ikke Madhusets egen side.</p></div>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="index.html">Madhuset Løgten</a>
@@ -27,9 +28,29 @@
 <main>
   <section class="page-head">
     <div class="wrap">
-      <h1>Ring eller skriv.</h1>
-      <p class="lead">Telefonen er åben alle ugens dage 09.00-21.00.</p>
+      <h1>Spørg om jeres dato.</h1>
+      <p class="lead">Ring alle ugens dage 09.00-21.00, eller skriv med dato og antal gæster.</p>
       <div class="actions"><a class="btn" href="tel:+4593408541">Ring 93 40 85 41</a></div>
+    </div>
+  </section>
+
+  <section class="includes">
+    <div class="wrap">
+      <h2>Skriv til huset</h2>
+      <div class="calc" style="grid-column: 1 / -1; max-width: 520px;">
+        <div class="field">
+          <label for="k-dato">Ønsket dato</label>
+          <input type="date" id="k-dato">
+        </div>
+        <div class="field">
+          <label for="k-gaester">Antal gæster (25-60)</label>
+          <input type="number" id="k-gaester" min="25" max="60" value="40" inputmode="numeric">
+        </div>
+        <div>
+          <a class="btn" id="k-mail" href="mailto:info@mondrups.com">Åbn en udfyldt mail</a>
+          <p class="small" style="margin-top: var(--s-16);">Knappen åbner mailen i dit eget mailprogram. Der sendes intet fra denne side. <a href="pris.html">Se først prisen for jeres fest.</a></p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -43,8 +64,8 @@
         <div><dt>Ring-tid</dt><dd>Alle ugens dage 09.00-21.00</dd></div>
       </dl>
       <div class="actions" style="grid-column: 1 / -1;">
-        <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Bytorvet+13%2C+8541+Skødstrup">Find vej</a>
-        <a class="link" href="pris.html">Regn prisen ud først</a>
+        <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Bytorvet+13%2C+8541+Sk%C3%B8dstrup">Find vej</a>
+        <a class="link" href="lokalet.html">Se lokalet</a>
       </div>
     </div>
   </section>
@@ -54,9 +75,10 @@
   <div class="wrap">
     <div>
       <p><strong>Madhuset Løgten</strong>, Bytorvet 13, 8541 Skødstrup</p>
-      <p>Demo lavet af OviaSpecs. Ikke godkendt af Madhuset Løgten eller Mondrups.</p>
+      <p>Demo lavet af OviaSpecs. Ikke godkendt af Madhuset Løgten eller Mondrups. Oplysninger fra mondrups.com/madhuset, hentet 23.11.2026.</p>
     </div>
   </div>
 </footer>
+<script type="module" src="js/kontakt.js"></script>
 </body>
 </html>
