@@ -55,7 +55,8 @@ export function panorama(tegn, farve) {
   let aspektNu = 1;
   function synsfelt() { return (aspektNu < 0.92 ? 76 : 57) * zoom; }
   function traek(dx, dy, højde) {
-    const k = (2 * Math.tan(THREE.MathUtils.degToRad(synsfelt()) / 2)) / Math.max(1, højde);
+    // Svip mod højre = kig mod højre, op = kig op (negativt fortegn ift. at gribe billedet).
+    const k = -(2 * Math.tan(THREE.MathUtils.degToRad(synsfelt()) / 2)) / Math.max(1, højde);
     const nu = performance.now();
     const dt = Math.max(8, Math.min(60, nu - sidst)) / 1000;
     sidst = nu;
