@@ -1,13 +1,16 @@
 const afstand = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
 
-export function styrVisning(canvas, { start, drej, zoom }) {
+export function styrVisning(canvas, { start, drej, zoom, slip }) {
   const fingre = new Map();
   let zoomAfstand = 0;
 
   function slip(event) {
     if (!fingre.delete(event.pointerId)) return;
     zoomAfstand = 0;
-    if (!fingre.size) delete canvas.dataset.traekker;
+    if (!fingre.size) {
+      delete canvas.dataset.traekker;
+      if (slip) slip();
+    }
   }
 
   canvas.addEventListener("pointerdown", (event) => {

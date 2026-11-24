@@ -425,6 +425,7 @@ export function start(container, { reduceret = false, vedFejl = () => {} } = {})
       renderer.shadowMap.needsUpdate = true;
       skyggeNy = false;
     }
+    if (vinkelNavn === "bord" && sal.tik(dt)) igen = true;
     if (vinkelNavn !== "bord" || !sal.tegn(renderer, camera.aspect)) renderer.render(scene, camera);
     if (igen) tegn();
   }
@@ -455,8 +456,8 @@ export function start(container, { reduceret = false, vedFejl = () => {} } = {})
     const før = mål(vinkelNavn).radius;
     bredde = w;
     højde = h;
-    const pixelbudget = mobil ? 500_000 : 1_200_000;
-    const ppi = Math.min(window.devicePixelRatio || 1, mobil ? 1.55 : 1.8, Math.sqrt(pixelbudget / (w * h)));
+    const pixelbudget = mobil ? 900_000 : 1_400_000;
+    const ppi = Math.min(window.devicePixelRatio || 1, mobil ? 2 : 2, Math.sqrt(pixelbudget / (w * h)));
     renderer.setPixelRatio(ppi);
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
@@ -484,9 +485,10 @@ export function start(container, { reduceret = false, vedFejl = () => {} } = {})
     tegn();
   }
   styrVisning(dom, {
-    start() { kamTween = null; },
+    start() { kamTween = null; sal.stopSving(); },
+    slip() { sal.slip(); tegn(); },
     drej(x, y) {
-      sal.drej(x * 0.004, y * 0.004);
+      if (vinkelNavn === "bord") sal.traek(x, y, container.clientHeight); else sal.drej(x * 0.004, y * 0.004);
       v.az -= x * 0.007;
       tilt(-y * 0.005);
       tegn();

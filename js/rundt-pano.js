@@ -9,7 +9,7 @@ export function panorama(tegn, farve) {
   const scene = new THREE.Scene();
   scene.background = farve;
   const camera = new THREE.PerspectiveCamera(62, 1, 0.1, 60);
-  const form = new THREE.SphereGeometry(40, 40, 24);
+  const form = new THREE.SphereGeometry(40, 128, 64);
   form.scale(-1, 1, 1);
   const overflade = new THREE.MeshBasicMaterial({ toneMapped: false });
   const kugle = new THREE.Mesh(form, overflade);
@@ -30,7 +30,7 @@ export function panorama(tegn, farve) {
         return;
       }
       billede.colorSpace = THREE.SRGBColorSpace;
-      billede.anisotropy = 2;
+      billede.anisotropy = 8;
       post.billede = billede;
       if (aktivt === antal) tegn();
     }).catch(() => {});
@@ -46,7 +46,35 @@ export function panorama(tegn, farve) {
     yaw -= x;
     pitch = Math.min(maxTilt, Math.max(-maxTilt, pitch + y));
   }
-  function nulstil() { yaw = startretning; pitch = 0; zoom = 1; }
+  function nulstil() { yaw = startretning; pitch = 0; zoom = 1; fartX = 0; fartY = 0; }
+
+  // Fingeren styrer billedet 1:1 (vinkel pr. pixel ud fra synsfeltet), og et let sving klinger ud ved slip.
+  let fartX = 0;
+  let fartY = 0;
+  let sidst = 0;
+  let aspektNu = 1;
+  function synsfelt() { return (aspektNu < 0.92 ? 76 : 57) * zoom; }
+  function traek(dx, dy, højde) {
+    const k = (2 * Math.tan(THREE.MathUtils.degToRad(synsfelt()) / 2)) / Math.max(1, højde);
+    const nu = performance.now();
+    const dt = Math.max(8, Math.min(60, nu - sidst)) / 1000;
+    sidst = nu;
+    fartX = fartX * 0.6 + (dx * k / dt) * 0.4;
+    fartY = fartY * 0.6 + (dy * k / dt) * 0.4;
+    drej(dx * k, dy * k);
+  }
+  function stopSving() { fartX = 0; fartY = 0; }
+  function slip() {
+    if (performance.now() - sidst > 90) stopSving();
+  }
+  function tik(dt) {
+    if (Math.abs(fartX) < 0.02 && Math.abs(fartY) < 0.02) { stopSving(); return false; }
+    drej(fartX * dt, fartY * dt);
+    const dæmp = Math.exp(-dt * 3.6);
+    fartX *= dæmp;
+    fartY *= dæmp;
+    return true;
+  }
 
   return {
     saet(antal) {
@@ -56,6 +84,10 @@ export function panorama(tegn, farve) {
       });
     },
     drej,
+    traek,
+    slip,
+    stopSving,
+    tik,
     nulstil,
     erKlar() { return Boolean(teksturer.get(aktivt)?.billede); },
     tilstand() { return { yaw, pitch, zoom, aktivt, indlaest: [...teksturer.keys()].filter((k) => teksturer.get(k).billede) }; },
@@ -68,7 +100,8 @@ export function panorama(tegn, farve) {
         overflade.map = billede;
         kugle.visible = true;
       }
-      const fov = (aspect < 0.92 ? 76 : 57) * zoom;
+      aspektNu = aspect;
+      const fov = synsfelt();
       if (camera.aspect !== aspect || camera.fov !== fov) {
         camera.aspect = aspect;
         camera.fov = fov;
