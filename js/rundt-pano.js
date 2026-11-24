@@ -56,12 +56,13 @@ export function panorama(tegn, farve) {
   function synsfelt() { return (aspektNu < 0.92 ? 76 : 57) * zoom; }
   function traek(dx, dy, højde) {
     // Svip mod højre = kig mod højre, op = kig op (negativt fortegn ift. at gribe billedet).
-    const k = -(2 * Math.tan(THREE.MathUtils.degToRad(synsfelt()) / 2)) / Math.max(1, højde);
+    const k = -0.7 * (2 * Math.tan(THREE.MathUtils.degToRad(synsfelt()) / 2)) / Math.max(1, højde);
     const nu = performance.now();
     const dt = Math.max(8, Math.min(60, nu - sidst)) / 1000;
     sidst = nu;
-    fartX = fartX * 0.6 + (dx * k / dt) * 0.4;
-    fartY = fartY * 0.6 + (dy * k / dt) * 0.4;
+    const grænse = (v) => Math.max(-1.6, Math.min(1.6, v));
+    fartX = grænse(fartX * 0.6 + (dx * k / dt) * 0.4);
+    fartY = grænse(fartY * 0.6 + (dy * k / dt) * 0.4);
     drej(dx * k, dy * k);
   }
   function stopSving() { fartX = 0; fartY = 0; }
@@ -69,9 +70,9 @@ export function panorama(tegn, farve) {
     if (performance.now() - sidst > 90) stopSving();
   }
   function tik(dt) {
-    if (Math.abs(fartX) < 0.02 && Math.abs(fartY) < 0.02) { stopSving(); return false; }
+    if (Math.abs(fartX) < 0.05 && Math.abs(fartY) < 0.05) { stopSving(); return false; }
     drej(fartX * dt, fartY * dt);
-    const dæmp = Math.exp(-dt * 3.6);
+    const dæmp = Math.exp(-dt * 7);
     fartX *= dæmp;
     fartY *= dæmp;
     return true;
