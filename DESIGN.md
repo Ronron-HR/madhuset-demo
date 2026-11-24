@@ -1,6 +1,6 @@
 # DESIGN.md — Madhuset Løgten (demo)
 
-Gælder den udgivne version på https://ronron-hr.github.io/madhuset-logten-demo/. Læs denne fil, før du ændrer noget visuelt. Opdatér den, når designet ændres, så den kun beskriver det, der faktisk er implementeret.
+Gælder den udgivne version på https://ronron-hr.github.io/madhuset-demo/. Læs denne fil, før du ændrer noget visuelt. Opdatér den, når designet ændres, så den kun beskriver det, der faktisk er implementeret.
 
 ## 1. Visuel retning: "Fra døråbningen til jeres bord"
 Gæsten ser først det rigtige rum, som når man træder ind til en opdækket fest, og derefter sit eget selskab tage form i bordplanen. Stedets materialer styrer designet: hvid dug, træstole, glas, lys fra vinduerne og gule blomster.
