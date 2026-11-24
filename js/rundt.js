@@ -85,6 +85,14 @@ if (!langsom) {
   window.addEventListener("load", () => ledig(forhent, { timeout: 5000 }), { once: true });
 }
 
+function skiftTilPlan() {
+  visning?.stop();
+  visning = null;
+  mangler3d = true;
+  visPlantegninger();
+  status.textContent = "3D kan ikke vises på denne enhed. Her er bordplanen set ovenfra.";
+}
+
 async function aabn3d() {
   if (visning || indlaeser || mangler3d) return;
   indlaeser = true;
@@ -92,15 +100,13 @@ async function aabn3d() {
   try {
     const mod = await import("./rundt3d.js");
     if (dlg.open) {
-      visning = mod.start(scene, { reduceret: reduceret.matches });
+      visning = mod.start(scene, { reduceret: reduceret.matches, vedFejl: skiftTilPlan });
       visning.saet(antal);
       if (vinkel !== "bord") visning.vinkel(vinkel);
     }
     status.textContent = "";
   } catch {
-    mangler3d = true;
-    visPlantegninger();
-    status.textContent = "3D kan ikke vises på denne enhed. Her er bordplanerne set ovenfra.";
+    skiftTilPlan();
   } finally {
     indlaeser = false;
   }
@@ -141,6 +147,8 @@ scene.addEventListener("keydown", (e) => {
     ArrowUp: () => visning.tilt(-0.1),
     ArrowDown: () => visning.tilt(0.1),
     Home: () => visning.nulstil(),
+    "+": () => visning.zoom(0.9),
+    "-": () => visning.zoom(1.1),
   };
   if (map[e.key]) { e.preventDefault(); map[e.key](); }
 });

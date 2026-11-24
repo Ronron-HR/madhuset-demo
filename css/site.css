@@ -233,10 +233,12 @@ footer { background: var(--c-surface); }
 
 /* 3D-visningen: bordplan ved siden af fotoet af lokalet */
 [hidden] { display: none !important; }
-dialog { border: 0; padding: 0; margin: 0; width: 100%; max-width: none; height: 100dvh; max-height: none; background: var(--c-paper); color: var(--c-ink); }
+dialog { overscroll-behavior: contain; border: 0; padding: 0; margin: 0; width: 100%; max-width: none; height: 100dvh; max-height: none; background: var(--c-paper); color: var(--c-ink); }
 dialog::backdrop { background: var(--c-ink); }
+body:has(#rundt[open]) { overflow: hidden; }
 .rundt-ramme { display: flex; flex-direction: column; gap: var(--s-8); height: 100%; padding: var(--s-16) var(--s-24); max-width: 1280px; margin-inline: auto; }
 .rundt-ramme p { margin: 0; max-width: none; }
+#rundt-status:empty { display: none; }
 .rundt-top { display: flex; justify-content: space-between; align-items: center; }
 .rundt-top h2 { font-size: var(--t-20); }
 .rundt-faner, .rundt-valg, .rundt-kontrol { display: flex; flex-wrap: wrap; gap: var(--s-8); }
@@ -246,8 +248,14 @@ dialog::backdrop { background: var(--c-ink); }
 .rundt-model { display: flex; flex-direction: column; gap: var(--s-8); min-height: 0; }
 .rundt-scene-ramme { position: relative; flex: 1 1 0; min-height: 220px; border: 1px solid var(--c-line); background: var(--c-paper); }
 .rundt-scene { position: absolute; inset: 0; }
-.rundt-scene canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
-.rundt-maerke { position: absolute; left: 0; top: 0; z-index: 1; background: var(--c-paper); border-right: 1px solid var(--c-line); border-bottom: 1px solid var(--c-line); padding: var(--s-4) var(--s-8); font-weight: 600; font-size: var(--t-14); }
+.rundt-scene canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; }
+.rundt-scene canvas[data-traekker] { cursor: grabbing; }
+.rundt-tip { display: none; }
+@media (pointer: coarse) {
+  .rundt-tip { display: block; position: absolute; inset: auto auto .5rem .5rem; padding: .24rem .42rem; background: var(--c-paper); font-size: .75rem; pointer-events: none; }
+  .rundt-scene[hidden] ~ .rundt-tip { display: none; }
+}
+.rundt-maerke { position: absolute; left: 0; top: 0; z-index: 1; pointer-events: none; background: var(--c-paper); border-right: 1px solid var(--c-line); border-bottom: 1px solid var(--c-line); padding: var(--s-4) var(--s-8); font-weight: 600; font-size: var(--t-14); }
 .rundt-maerke::before { content: ""; display: inline-block; width: 10px; height: 10px; background: var(--c-sun); margin-right: var(--s-8); }
 .rundt-planer { position: absolute; inset: 0; overflow: auto; padding: var(--s-16); }
 .rundt-planer figure { margin: 0; }
@@ -258,6 +266,19 @@ dialog::backdrop { background: var(--c-ink); }
 .rundt-ramme[data-fane="foto"] .rundt-model { display: none; }
 .rundt-bund { display: flex; flex-wrap: wrap; gap: var(--s-16); align-items: center; justify-content: space-between; }
 .rundt-styring { display: flex; flex-direction: column; gap: var(--s-8); }
+@media (max-width: 899px) {
+  .rundt-ramme { height: auto; min-height: 100%; padding-inline: var(--s-16); }
+  .rundt-hoved { flex: 1 0 auto; }
+  .rundt-scene-ramme { min-height: clamp(220px, 40dvh, 480px); }
+  .rundt-foto img { flex: none; height: auto; aspect-ratio: 3 / 2; max-height: 50dvh; }
+  .rundt-bund {
+    position: sticky;
+    z-index: 2;
+    bottom: 0;
+    padding: var(--s-8) 0 max(var(--s-8), env(safe-area-inset-bottom));
+    background: var(--c-paper);
+  }
+}
 
 @media (min-width: 900px) {
   h1 { font-size: var(--t-44); }
