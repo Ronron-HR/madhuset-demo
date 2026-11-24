@@ -35,8 +35,6 @@ section { padding-block: var(--s-64); }
 section + section { border-top: 1px solid var(--c-line); }
 
 /* Demo-stribe */
-.demo { background: var(--c-surface); font-size: var(--t-14); padding: var(--s-8) var(--s-24); }
-.demo p { margin: 0; max-width: none; }
 
 /* Header */
 .top { padding-block: var(--s-16); border-bottom: 1px solid var(--c-line); }
@@ -179,7 +177,6 @@ footer p { max-width: none; margin-bottom: var(--s-8); }
 /* ---------- Identitet fra fotoernes materialer: hvid dug, træ, glas, gule blomster ---------- */
 .skip { position: absolute; top: var(--s-8); left: var(--s-8); z-index: 10; padding: var(--s-8) var(--s-16); background: var(--c-paper); transform: translateY(-150%); }
 .skip:focus { transform: none; }
-.demo { padding-block: var(--s-4); }
 .top .wrap { row-gap: var(--s-4); }
 .nav { gap: 0 clamp(0.5rem, 2.4vw, 1.25rem); }
 .nav a { font-size: 0.9375rem; }
@@ -287,8 +284,7 @@ body:has(#rundt[open]) { overflow: hidden; }
   .wrap > h2 { margin-bottom: 0; }
   section { padding-block: var(--s-104); }
   .page-head { padding-block: var(--s-64); }
-  .demo { padding-inline: var(--s-40); }
-  .top .wrap { align-items: center; }
+    .top .wrap { align-items: center; }
   .top .brand { grid-column: 1 / 5; }
   .top .nav { grid-column: 5 / -1; justify-content: flex-end; gap: var(--s-16) var(--s-24); }
   .nav { gap: var(--s-24); }

@@ -60,7 +60,7 @@ Madbestilling holdes adskilt fra Madhusets pris for lokale og buffet. Siden (`be
 ## 7. Regler der gælder fortsat
 - Opfind ikke fakta, priser, anmeldelser, retter eller billeder. Ukendt står som ukendt.
 - Stockfoto kun til stemning og aldrig som stedets egne. Intet foto uden kilde. Genkendelige personer kræver samtykke.
-- Demoen er markeret ("Demo af OviaSpecs · ikke Madhusets egen side"), er noindex, og fotos fjernes efter ønske.
+- Demoen er markeret diskret i footeren ("Demo af OviaSpecs, ikke Madhusets egen side"), er noindex, og fotos fjernes efter ønske. Der er ingen bjælke øverst, så navigationen starter helt oppe.
 - Alle farver og størrelser kommer fra tokens. Ingen nye farver uden at opdatere denne fil.
 - Ikon: Madhusets eget profilbillede fra Instagram (https://www.instagram.com/madhusetloegten/, "madhusetloegtens profilbillede", hentet i 150×150 px, det største Instagram udleverer uden login), skaleret til `favicon-32.png`, `favicon.ico`, `favicon-192.png` og `apple-touch-icon.png`. Logoet er et bredt ordmærke og er ikke læsbart ved 16–32 px; i større visning (hjemmeskærm) er det let blødt, fordi kilden kun er 150 px. Skift til en større logofil, hvis stedet leverer den.
 
